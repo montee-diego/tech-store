@@ -1,0 +1,74 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 95%;
+  min-height: 100%;
+  margin: 0rem auto;
+}
+
+#logo {
+  font-family: "Iceland", cursive;
+  font-size: 1.7rem;
+}
+
+.search {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  overflow: hidden;
+  flex: 1;
+}
+
+.search:focus-within {
+  outline: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+.search input {
+  border: none;
+  background-color: transparent;
+  color: #545868;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  outline: none;
+  flex: 1;
+  width: 10px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0rem 0.5rem;
+}
+
+.button img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.cart:hover {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.cart span {
+  font-size: 0.9rem;
+}
+
+.cart img {
+  width: 1rem;
+  height: 1rem;
+}

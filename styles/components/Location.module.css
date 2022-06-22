@@ -1,0 +1,10 @@
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex img {
+  width: 0.8rem;
+  height: 1.5rem;
+  margin: 0rem 0.7rem;
+}

@@ -1,0 +1,43 @@
+.quantity {
+  display: flex;
+  border-radius: 2px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  outline: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.quantity input {
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.quantity input:focus {
+  outline: none;
+}
+
+.value {
+  border: none;
+  text-align: center;
+}
+
+.lbtn {
+  border: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.rbtn {
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.lbtn,
+.rbtn {
+  background-color: #efefef;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.lbtn:hover,
+.rbtn:hover {
+  background-color: #dfdfdf;
+}

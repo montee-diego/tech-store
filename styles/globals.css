@@ -1,16 +1,63 @@
-html,
-body {
+* {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Work Sans", sans-serif;
+  background-color: #efefef;
+  color: #272727;
+}
+
+nav {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  height: 10vh;
+  min-height: 10vh;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+footer {
+  height: 10vh;
+  min-height: 10vh;
+  background-color: #dfdfdf;
+  border-top: 1px solid #cfcfcf;
+}
+
+section {
+  width: 95%;
+  margin: 0rem auto;
+  min-height: 80vh;
+}
+
+h1 {
+  color: #255983;
+  padding: 1rem 0rem;
 }
 
 a {
-  color: inherit;
+  color: #272727;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+input,
+button {
+  font-family: "Work Sans", sans-serif;
+  color: #272727;
+}
+
+/* Remove arrows in input fields */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

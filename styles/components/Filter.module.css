@@ -1,0 +1,80 @@
+.form {
+  width: 256px;
+  min-width: 256px;
+}
+
+.form h5 {
+  color: #545868;
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.3rem 0rem;
+  margin-bottom: 0.5rem;
+}
+
+.form button {
+  background-color: white;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  cursor: pointer;
+  float: right;
+}
+
+.form button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.checkbox input {
+  margin-right: 0.5rem;
+}
+
+.price {
+  display: flex;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+}
+
+.filter label {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 0rem 0.5rem;
+  white-space: nowrap;
+  width: 50%;
+}
+
+.input label {
+  display: inline-block;
+  width: 2rem;
+}
+
+.input input {
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  padding: 0.5rem 0rem 0.5rem 0.5rem;
+  outline: none;
+  width: 10px;
+  flex: 1;
+}
