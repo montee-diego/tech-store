@@ -33,27 +33,29 @@ const CartProduct: NextPage<IProps> = ({ cartItem }) => {
         <img src={product.image.url} alt={product.title} />
       </div>
 
-      <div className={Style.title}>
-        <Link href={`/product/${product.id}`}>
-          <a className={Style.productlink}>{product.title}</a>
-        </Link>
-      </div>
-
-      <div className={Style.info}>
-        <div className={Style.quantity}>
-          <Quantity
-            stock={product.quantity}
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
-
-          <p>
-            {quantity}x {displayPrice(product.price)}
-          </p>
+      <div className={Style.container}>
+        <div className={Style.title}>
+          <Link href={`/product/${product.id}`}>
+            <a className={Style.productlink}>{product.title}</a>
+          </Link>
         </div>
 
-        <div className={Style.subtotal}>
-          <p>{displayPrice(product.price * quantity)}</p>
+        <div className={Style.info}>
+          <div className={Style.quantity}>
+            <Quantity
+              stock={product.quantity}
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
+
+            <p>
+              {quantity}x {displayPrice(product.price)}
+            </p>
+          </div>
+
+          <div className={Style.subtotal}>
+            <p>{displayPrice(product.price * quantity)}</p>
+          </div>
         </div>
       </div>
 

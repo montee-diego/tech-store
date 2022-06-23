@@ -11,16 +11,20 @@
   font-size: 0.9rem;
   font-weight: 400;
   padding: 0.3rem 0rem;
+  white-space: nowrap;
 }
 
 .wrapper {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  flex-wrap: wrap;
 }
 
 .orderby {
   cursor: pointer;
+  white-space: nowrap;
+  /* padding: 0.3rem 0.5rem; */
 }
 
 .orderby input {
@@ -34,6 +38,7 @@
 }
 
 .orderby span {
+  display: inline-block;
   border-radius: 5px;
   padding: 0.3rem 0.5rem;
 }

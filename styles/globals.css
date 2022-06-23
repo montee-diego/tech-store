@@ -33,6 +33,7 @@ section {
   width: 95%;
   margin: 0rem auto;
   min-height: 80vh;
+  overflow-x: hidden;
 }
 
 h1 {

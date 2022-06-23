@@ -45,3 +45,17 @@
 .popup button:hover {
   background-color: #2a6ba0;
 }
+
+@media screen and (max-width: 768px) {
+  .popup {
+    top: 25%;
+    left: 5%;
+    width: 90%;
+    height: 50%;
+    transform: translate(0%, 0%);
+  }
+
+  .popup button {
+    font-size: 1rem;
+  }
+}

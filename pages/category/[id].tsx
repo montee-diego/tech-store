@@ -46,6 +46,7 @@ interface IProps {
 const CategoryPage: NextPage<IProps> = ({ category, total }) => {
   const [products, setProducts] = useState<IProducts[]>(category.products)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
   const [page, setPage] = useState<number>(0)
   const [orderBy, setOrderBy] = useState<ProductOrderByInput>(
     ProductOrderByInput.title_ASC
@@ -70,8 +71,24 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
     },
   })
 
+  const handleShowFilter = (): void => {
+    if (isFilterOpen) {
+      document.body.style.overflow = "unset"
+    } else {
+      document.body.style.overflow = "hidden"
+    }
+
+    setIsFilterOpen(!isFilterOpen)
+  }
+
   useEffect(() => {
     setIsLoading(true)
+
+    if (isFilterOpen) {
+      document.body.style.overflow = "unset"
+      setIsFilterOpen(false)
+    }
+
     runQuery({
       variables: { ...filterOpts, orderBy: orderBy, skip: 10 * page },
     })
@@ -83,13 +100,24 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
         <title>Tech Store | {category.name}</title>
       </Head>
 
-      <h1>{category.name}</h1>
+      <div className={Style.title}>
+        <h1>{category.name}</h1>
+        <button className={Style.filterbtn} onClick={handleShowFilter}>
+          {isFilterOpen ? "Close" : "Filter"}
+        </button>
+      </div>
+
       <div className={Style.flex}>
-        <Filter
-          id={category.id}
-          brands={category.brands}
-          setFilterOpts={setFilterOpts}
-        />
+        <div
+          className={`${Style.filter} ${
+            isFilterOpen ? Style.open : Style.close
+          }`}>
+          <Filter
+            id={category.id}
+            brands={category.brands}
+            setFilterOpts={setFilterOpts}
+          />
+        </div>
         <div className={Style.products}>
           <OrderBy setOrderBy={setOrderBy} />
 
