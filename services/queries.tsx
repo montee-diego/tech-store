@@ -81,6 +81,21 @@ export const GET_CATEGORY_FILTERED = gql`
     ) {
       ...ProductCard
     }
+    productsConnection(
+      where: {
+        categoryId: $id
+        brand_in: $brands
+        AND: [
+          { quantity_gte: $quantity }
+          { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
+          { price_gte: $minPrice, price_lte: $maxPrice }
+        ]
+      }
+    ) {
+      aggregate {
+        count
+      }
+    }
   }
 `
 

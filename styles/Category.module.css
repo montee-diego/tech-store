@@ -22,10 +22,16 @@
 }
 
 .filterbtn {
+  display: none;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
   cursor: pointer;
   padding: 0.5rem;
+}
+
+.filterbtn:hover {
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 768px) {
@@ -38,6 +44,10 @@
     bottom: 0;
     transition: transform 0.25s ease-in-out;
     z-index: 50;
+  }
+
+  .filterbtn {
+    display: block;
   }
 
   .open {

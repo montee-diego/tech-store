@@ -48,6 +48,7 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
   const [page, setPage] = useState<number>(0)
+  const [filterTotal, setFilterTotal] = useState<number>(total)
   const [orderBy, setOrderBy] = useState<ProductOrderByInput>(
     ProductOrderByInput.title_ASC
   )
@@ -66,6 +67,10 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
     fetchPolicy: "no-cache",
     notifyOnNetworkStatusChange: true,
     onCompleted: data => {
+      if (data.productsConnection.aggregate.count <= 10) {
+        setPage(0)
+      }
+      setFilterTotal(data.productsConnection.aggregate.count)
       setProducts(data.products)
       setIsLoading(false)
     },
@@ -73,7 +78,7 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
 
   const handleShowFilter = (): void => {
     if (isFilterOpen) {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = "visible"
     } else {
       document.body.style.overflow = "hidden"
     }
@@ -130,7 +135,7 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
                   <Card product={product} key={product.id} />
                 ))}
               </div>
-              <Pagination setPage={setPage} total={total} />
+              <Pagination setPage={setPage} total={filterTotal} />
             </>
           ) : (
             <p>No results.</p>

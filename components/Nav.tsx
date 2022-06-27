@@ -38,12 +38,12 @@ const Nav = () => {
             ref={inputEl}
           />
           <button type='submit' className={Style.button} title='Search'>
-            <img src='/img/icon-search.svg' alt='Search' />
+            <img src='/tech-store/img/icon-search.svg' alt='Search' />
           </button>
         </form>
         <Link href='/cart'>
           <a className={Style.cart}>
-            <img src='/img/cart-shopping-solid.svg' alt='Cart' />
+            <img src='/tech-store/img/cart-shopping-solid.svg' alt='Cart' />
             <span>{cart.length}</span>
           </a>
         </Link>

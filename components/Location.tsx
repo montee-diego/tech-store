@@ -13,7 +13,7 @@ const Location: NextPage<IProps> = ({ id, name, brand }) => {
   return (
     <div className={Style.flex}>
       <NavLink href={`/category/${id}`} title={name} />
-      <img src='/img/chevron-right-solid.svg' alt='>' />
+      <img src='/tech-store/img/chevron-right-solid.svg' alt='>' />
       <h1>{brand}</h1>
     </div>
   )

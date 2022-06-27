@@ -14,7 +14,9 @@ const Seller: NextPage<IProps> = ({ seller }) => {
       <span>
         Sold by <strong>{seller.name}</strong>
       </span>
-      {seller.isOfficial && <img src='/img/circle-check-solid.svg' />}
+      {seller.isOfficial && (
+        <img src='/tech-store/img/circle-check-solid.svg' />
+      )}
     </div>
   )
 }
