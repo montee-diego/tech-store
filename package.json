@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
-    "deploy": "next build && echo \"\" > dist/.nojekyll && git add dist && git commit -m \"Deploy to GH-PAGES\" && git subtree push --prefix dist origin gh-pages",
     "lint": "next lint"
   },
   "dependencies": {
