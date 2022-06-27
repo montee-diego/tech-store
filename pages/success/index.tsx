@@ -4,7 +4,7 @@ const Success = () => {
   return (
     <section>
       <div className={Style.wrapper}>
-        <img src='/tech-store/img/order-complete.svg' alt='Success!' />
+        <img src='/img/order-complete.svg' alt='Success!' />
         <h2>Thank you for your sample order!</h2>
       </div>
     </section>

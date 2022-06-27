@@ -64,7 +64,7 @@ const CartProduct: NextPage<IProps> = ({ cartItem }) => {
       </div>
 
       <button value={product.id} onClick={handleClick} className={Style.remove}>
-        <img src='/tech-store/img/xmark-solid.svg' alt='X' />
+        <img src='/img/xmark-solid.svg' alt='X' />
       </button>
     </div>
   )
