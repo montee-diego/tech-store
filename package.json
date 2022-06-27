@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "deploy": "next build && git add dist && git commit -m \"Deploy to GH-PAGES\" && git subtree push --prefix dist origin gh-pages",
     "lint": "next lint"
   },
   "dependencies": {
