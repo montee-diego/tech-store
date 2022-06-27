@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { GetServerSideProps, NextPage } from "next"
 import { useLazyQuery } from "@apollo/client"
 
@@ -86,7 +86,7 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
     setIsFilterOpen(!isFilterOpen)
   }
 
-  useEffect(() => {
+  const reloadData = useCallback(() => {
     setIsLoading(true)
 
     if (isFilterOpen) {
@@ -98,6 +98,10 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
       variables: { ...filterOpts, orderBy: orderBy, skip: 10 * page },
     })
   }, [orderBy, filterOpts, page])
+
+  useEffect(() => {
+    reloadData()
+  }, [reloadData])
 
   return (
     <section>

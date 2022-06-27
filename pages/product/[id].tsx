@@ -75,7 +75,7 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
     setAddedToCart(
       cartStore().findIndex(item => item.product.id === product.id) >= 0
     )
-  }, [id])
+  }, [product.id])
 
   return (
     <section>
@@ -159,7 +159,7 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
       <h1 className={Style.similar}>Browse more {product.category.name}</h1>
       <div className={Style.grid}>
         {product.category.products.map(product => (
-          <Card product={product} />
+          <Card product={product} key={product.id} />
         ))}
       </div>
     </section>

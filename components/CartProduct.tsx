@@ -1,4 +1,4 @@
-import { useEffect, useState, SyntheticEvent } from "react"
+import { useEffect, useState, SyntheticEvent, useCallback } from "react"
 import { NextPage } from "next"
 
 import { ICart } from "../interfaces/interfaces"
@@ -22,10 +22,14 @@ const CartProduct: NextPage<IProps> = ({ cartItem }) => {
     cartStore(JSON.parse(localStorage.getItem("cart") || "[]"))
   }
 
-  useEffect(() => {
+  const cartProductUpdate = useCallback(() => {
     updateCart(product.id, quantity)
     cartStore(JSON.parse(localStorage.getItem("cart") || "[]"))
   }, [quantity])
+
+  useEffect(() => {
+    cartProductUpdate()
+  }, [cartProductUpdate])
 
   return (
     <div className={Style.card}>

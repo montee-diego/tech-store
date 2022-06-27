@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from "react"
+import { useState, useEffect, ChangeEvent, useCallback } from "react"
 import { GetServerSideProps, NextPage } from "next"
 import { useLazyQuery } from "@apollo/client"
 
@@ -46,10 +46,14 @@ const Search: NextPage<IProps> = ({ results, query, total }) => {
     },
   })
 
-  useEffect(() => {
+  const reloadData = useCallback(() => {
     setIsLoading(true)
     runQuery()
   }, [orderBy, page])
+
+  useEffect(() => {
+    reloadData()
+  }, [reloadData])
 
   return (
     <section>
@@ -57,7 +61,7 @@ const Search: NextPage<IProps> = ({ results, query, total }) => {
         <title>Tech Store | Search: {query}</title>
       </Head>
 
-      <h1>Search results for "{query}"</h1>
+      <h1>Search results for &quot;{query}&quot;</h1>
       <OrderBy setOrderBy={setOrderBy} />
 
       {isLoading ? (
