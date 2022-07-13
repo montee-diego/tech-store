@@ -1,14 +1,15 @@
-import { Dispatch, SetStateAction, MouseEvent } from "react"
+import { Dispatch, SetStateAction, MouseEvent, useState } from "react"
 import { NextPage } from "next"
 
 import Style from "../styles/components/Pagination.module.css"
 
 interface IProps {
+  page: number
   total: number
   setPage: Dispatch<SetStateAction<number>>
 }
 
-const Pagination: NextPage<IProps> = ({ setPage, total }) => {
+const Pagination: NextPage<IProps> = ({ page, setPage, total }) => {
   const totalPages = Math.ceil(total / 10)
 
   const handlePage = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -20,7 +21,11 @@ const Pagination: NextPage<IProps> = ({ setPage, total }) => {
 
     for (let i = 0; i < totalPages; i++) {
       buttons.push(
-        <button key={i} onClick={handlePage} value={i}>
+        <button
+          key={i}
+          onClick={handlePage}
+          value={i}
+          className={page === i ? Style.active : ""}>
           {i + 1}
         </button>
       )

@@ -12,6 +12,7 @@ import Card from "../../components/Card"
 import Quantity from "../../components/Quantity"
 import Location from "../../components/Location"
 import Seller from "../../components/Seller"
+import ProductList from "../../components/ProductList"
 import Style from "../../styles/Product.module.css"
 
 interface IProduct {
@@ -157,11 +158,11 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
       </div>
 
       <h1 className={Style.similar}>Browse more {product.category.name}</h1>
-      <div className={Style.grid}>
+      <ProductList>
         {product.category.products.map(product => (
           <Card product={product} key={product.id} />
         ))}
-      </div>
+      </ProductList>
     </section>
   )
 }

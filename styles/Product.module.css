@@ -121,13 +121,6 @@
   text-align: justify;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
 @media screen and (max-width: 768px) {
   .details {
     flex-direction: column;

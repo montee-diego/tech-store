@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, useCallback } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { GetServerSideProps, NextPage } from "next"
 import { useLazyQuery } from "@apollo/client"
 
@@ -11,6 +11,7 @@ import Card from "../../components/Card"
 import Loading from "../../components/Loading"
 import OrderBy from "../../components/OrderBy"
 import Pagination from "../../components/Pagination"
+import ProductList from "../../components/ProductList"
 import Style from "../../styles/Search.module.css"
 
 interface IProps {
@@ -68,12 +69,12 @@ const Search: NextPage<IProps> = ({ results, query, total }) => {
         <Loading />
       ) : products.length > 0 ? (
         <>
-          <div className={Style.grid}>
+          <ProductList>
             {products.map(product => (
               <Card product={product} key={product.id} />
             ))}
-          </div>
-          <Pagination setPage={setPage} total={total} />
+          </ProductList>
+          <Pagination page={page} setPage={setPage} total={total} />
         </>
       ) : (
         <p>No results.</p>

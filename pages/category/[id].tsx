@@ -12,6 +12,7 @@ import Filter from "../../components/Filter"
 import Loading from "../../components/Loading"
 import OrderBy from "../../components/OrderBy"
 import Pagination from "../../components/Pagination"
+import ProductList from "../../components/ProductList"
 import Style from "../../styles/Category.module.css"
 
 enum ProductOrderByInput {
@@ -134,12 +135,12 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
             <Loading />
           ) : products.length > 0 ? (
             <>
-              <div className={Style.grid}>
+              <ProductList>
                 {products.map(product => (
                   <Card product={product} key={product.id} />
                 ))}
-              </div>
-              <Pagination setPage={setPage} total={filterTotal} />
+              </ProductList>
+              <Pagination page={page} setPage={setPage} total={filterTotal} />
             </>
           ) : (
             <p>No results.</p>
