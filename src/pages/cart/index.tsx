@@ -7,6 +7,7 @@ import { displayPrice } from "@utils/utils"
 
 import Head from "next/head"
 import Link from "next/link"
+import getStripe from "@services/getStripe"
 import CartProduct from "@components/CartProduct"
 import Style from "@styles/Cart.module.css"
 import { SyntheticEvent } from "react"
@@ -19,10 +20,32 @@ const Cart = () => {
     return prev + next.quantity * next.product.price
   }, 0)
 
-  const handleCheckout = (event: SyntheticEvent): void => {
-    cartStore([])
-    localStorage.removeItem("cart")
-    router.push("/success")
+  // const handleCheckout = (event: SyntheticEvent): void => {
+  //   cartStore([])
+  //   localStorage.removeItem("cart")
+  //   router.push("/success")
+  // }
+
+  const handleCheckout = async () => {
+    const stripe = await getStripe()
+
+    const response: Response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cart),
+    })
+
+    if (response.status === 500) return
+
+    const data = await response.json()
+
+    console.log(data)
+
+    stripe.redirectToCheckout({
+      sessionId: data.id,
+    })
   }
 
   return (
