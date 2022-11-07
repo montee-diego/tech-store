@@ -29,11 +29,16 @@ footer {
   border-top: 1px solid #cfcfcf;
 }
 
-section {
+main {
   width: 95%;
   margin: 0rem auto;
+  max-width: 1200px;
   min-height: 80vh;
   overflow-x: hidden;
+}
+
+section {
+  padding: 0;
 }
 
 h1 {

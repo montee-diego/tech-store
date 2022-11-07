@@ -1,15 +1,8 @@
 import { NextPage } from "next"
 
+import { ICategory } from "@interfaces/interfaces"
 import Link from "next/link"
 import Style from "@styles/components/Category.module.css"
-
-interface ICategory {
-  icon: {
-    url: string
-  }
-  id: string
-  name: string
-}
 
 interface IProps {
   category: ICategory
@@ -17,14 +10,16 @@ interface IProps {
 
 const Category: NextPage<IProps> = ({ category }) => {
   return (
-    <Link href={`/category/${category.id}`}>
-      <a className={Style.card}>
-        <div className={Style.image}>
-          <img src={category.icon.url} alt="product image" />
-        </div>
-        <h4>{category.name}</h4>
-      </a>
-    </Link>
+    <div
+      className={Style.slide}
+      style={{ backgroundImage: `url(${category.image.url})` }}
+    >
+      <div className={Style.overlay}>
+        <Link href={`/category/${category.id}`}>
+          <a className={Style.link}>{category.name}</a>
+        </Link>
+      </div>
+    </div>
   )
 }
 

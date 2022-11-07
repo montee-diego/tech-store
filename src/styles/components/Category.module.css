@@ -1,37 +1,32 @@
-.card {
+.slide {
+  aspect-ratio: 3 / 1;
+  background-size: cover;
+  background-position: center center;
+  flex-shrink: 0;
   width: 100%;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  color: #255983;
-  overflow: hidden;
-  transition: box-shadow 0.5s ease;
-  position: relative;
 }
 
-.card:hover {
-  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
-  color: #272727;
-}
-
-.card h4 {
-  line-height: 32px;
-  text-align: center;
-  color: inherit;
-  transition: color 0.5s ease;
-}
-
-.image {
+.overlay {
+  background-color: rgba(0, 0, 0, 0.35);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 140px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 2.5rem;
+  height: 100%;
 }
 
-.image img {
-  width: auto;
-  height: 100%;
-  object-fit: scale-down;
+.link {
+  color: white;
+  font-size: 4rem;
+  font-weight: 700;
+  padding: 2rem;
+}
+
+@media screen and (max-width: 576px) {
+  .slide {
+    aspect-ratio: 3 / 2;
+  }
+
+  .link {
+    font-size: 2rem;
+  }
 }

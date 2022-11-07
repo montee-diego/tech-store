@@ -1,0 +1,41 @@
+.container {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: background-color 0.25s ease;
+  width: 3rem;
+  z-index: 10;
+}
+
+.arrow img {
+  width: 1.5rem;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+@media (hover: hover) {
+  .arrow:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .arrow img {
+    width: 1rem;
+  }
+}

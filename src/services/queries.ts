@@ -23,6 +23,9 @@ export const GET_HOMEPAGE = gql`
         url
       }
       id
+      image {
+        url
+      }
       name
     }
     popular: products(where: { isOnSale: false }, first: 6, skip: $skip) {

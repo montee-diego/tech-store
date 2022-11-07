@@ -19,7 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <Nav />
-      <Component {...pageProps} />
+      <main>
+        <Component {...pageProps} />
+      </main>
       <Footer />
       {isPopupOpen && <Disclaimer setIsPopupOpen={setIsPopupOpen} />}
     </ApolloProvider>

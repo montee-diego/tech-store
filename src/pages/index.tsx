@@ -2,22 +2,15 @@ import { GetServerSideProps, NextPage } from "next"
 import { client } from "@services/apollo-client"
 
 import { GET_HOMEPAGE } from "@services/queries"
-import { IProducts } from "@interfaces/interfaces"
+import { ICategory, IProducts } from "@interfaces/interfaces"
 import { getRandomNumber } from "@utils/utils"
 
 import Head from "next/head"
 import Card from "@components/Card"
 import Category from "@components/Category"
 import ProductList from "@components/ProductList"
+import Slideshow from "@components/Slideshow"
 import Style from "@styles/Home.module.css"
-
-interface ICategory {
-  icon: {
-    url: string
-  }
-  id: string
-  name: string
-}
 
 interface IProps {
   categories: ICategory[]
@@ -38,11 +31,11 @@ const Home: NextPage<IProps> = ({ categories, popular, deals }) => {
       </Head>
 
       <h1>Browse Categories</h1>
-      <div className={Style.grid}>
+      <Slideshow>
         {categories.map((category) => (
           <Category category={category} key={category.id} />
         ))}
-      </div>
+      </Slideshow>
 
       <h1>Popular</h1>
       <ProductList>

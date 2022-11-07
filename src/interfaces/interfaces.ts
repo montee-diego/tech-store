@@ -11,6 +11,17 @@ export interface IProducts {
   title: string
 }
 
+export interface ICategory {
+  icon: {
+    url: string
+  }
+  id: string
+  image: {
+    url: string
+  }
+  name: string
+}
+
 export interface ISeller {
   id: string
   isOfficial: boolean
