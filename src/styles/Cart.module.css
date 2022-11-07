@@ -20,24 +20,6 @@
   display: inline;
 }
 
-.checkout {
-  border: none;
-  background-color: #897ee6;
-  color: white;
-  font-size: 1rem;
-  border-radius: 2px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  outline: 1px solid #6a5bf7;
-  padding: 0.5rem 1.5rem;
-  margin-left: 1rem;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
-}
-
-.checkout:hover {
-  background-color: #6a5bf7;
-}
-
 .empty {
   display: flex;
   flex-direction: column;
@@ -49,18 +31,4 @@
 
 .empty p {
   font-size: 1.1rem;
-}
-
-.shop {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 700;
-  padding: 1rem 2rem;
-  cursor: pointer;
-}
-
-.shop:hover {
-  border: 1px solid rgba(0, 0, 0, 0.2);
 }

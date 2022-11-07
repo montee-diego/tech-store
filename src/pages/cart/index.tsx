@@ -9,6 +9,7 @@ import Head from "next/head"
 import Link from "next/link"
 import getStripe from "@services/getStripe"
 import CartProduct from "@components/CartProduct"
+import { ButtonLink } from "@components/index"
 import Style from "@styles/Cart.module.css"
 import { SyntheticEvent } from "react"
 
@@ -66,17 +67,13 @@ const Cart = () => {
           <div className={Style.total}>
             <span>Total: </span>
             <h3>{displayPrice(cartTotal)}</h3>
-            <button className={Style.checkout} onClick={handleCheckout}>
-              Checkout
-            </button>
+            <ButtonLink onClick={handleCheckout}>Checkout</ButtonLink>
           </div>
         </>
       ) : (
         <div className={Style.empty}>
-          <p>Your cart is empty!</p>
-          <Link href="/">
-            <a className={Style.shop}>Go Shopping</a>
-          </Link>
+          <p>Oh no! Your cart is empty, but that's about to change...</p>
+          <ButtonLink href="/">Go Shopping</ButtonLink>
         </div>
       )}
     </section>

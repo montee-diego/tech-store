@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, SyntheticEvent } from "react"
 import { NextPage } from "next"
 
+import { ButtonLink } from "@components/index"
+
 import Style from "@styles/components/Disclaimer.module.css"
 
 interface IProps {
@@ -21,7 +23,7 @@ const Disclaimer: NextPage<IProps> = ({ setIsPopupOpen }) => {
           products are for sale. Prices were taken from different sites and do
           not reflect real market prices at all.
         </p>
-        <button onClick={handlePopup}>Ok, I Understand</button>
+        <ButtonLink onClick={handlePopup}>Ok, I understand</ButtonLink>
       </div>
     </div>
   )

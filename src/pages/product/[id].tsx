@@ -7,6 +7,8 @@ import { displayPrice, displayDiscount, addToCart } from "@utils/utils"
 import { GET_PRODUCT_BY_ID } from "@services/queries"
 import { ISeller, IProducts, ICart } from "@interfaces/interfaces"
 
+import { ButtonLink } from "@components/index"
+
 import Head from "next/head"
 import Card from "@components/Card"
 import Quantity from "@components/Quantity"
@@ -135,13 +137,7 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
                     In Cart
                   </button>
                 ) : (
-                  <button
-                    className={Style.purchase}
-                    disabled={product.quantity < 1}
-                    onClick={handlePurchase}
-                  >
-                    Purchase
-                  </button>
+                  <ButtonLink onClick={handlePurchase}>Purchase</ButtonLink>
                 )}
               </>
             ) : (
