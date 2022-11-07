@@ -72,7 +72,7 @@ const Cart = () => {
         </>
       ) : (
         <div className={Style.empty}>
-          <p>Oh no! Your cart is empty, but that's about to change...</p>
+          <p>Oh no! Your cart is empty, but that is about to change...</p>
           <ButtonLink href="/">Go Shopping</ButtonLink>
         </div>
       )}
