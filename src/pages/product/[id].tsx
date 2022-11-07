@@ -129,13 +129,9 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
                 </div>
 
                 {addedToCart ? (
-                  <button
-                    className={`${Style.purchase} ${Style.added}`}
-                    disabled={product.quantity < 1}
-                    onClick={handleInCart}
-                  >
+                  <ButtonLink href="/cart" secondary>
                     In Cart
-                  </button>
+                  </ButtonLink>
                 ) : (
                   <ButtonLink onClick={handlePurchase}>Purchase</ButtonLink>
                 )}

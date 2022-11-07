@@ -1,17 +1,31 @@
 .button {
-  background-color: #897ee6;
   border: none;
   border-radius: 2px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  color: white;
   cursor: pointer;
+  display: inline-block;
   font-size: 1rem;
   margin: 0.5rem 0rem;
-  outline: 1px solid #6a5bf7;
   padding: 0.5rem 1.5rem;
   transition: background-color 0.25s ease;
 }
 
-.button:hover {
+.primary {
+  background-color: #897ee6;
+  color: white;
+  outline: 1px solid #6a5bf7;
+}
+
+.primary:hover {
   background-color: #6a5bf7;
+}
+
+.secondary {
+  background-color: #1feb52;
+  color: #272727;
+  outline: 1px solid #12a737;
+}
+
+.secondary:hover {
+  background-color: #70ff94;
 }
