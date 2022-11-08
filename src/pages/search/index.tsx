@@ -6,12 +6,11 @@ import { client } from "@services/apollo-client"
 import { GET_SEARCH } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 
+import { ProductsGrid } from "@components/index"
 import Head from "next/head"
-import Card from "@components/Card"
 import Loading from "@components/Loading"
 import OrderBy from "@components/OrderBy"
 import Pagination from "@components/Pagination"
-import ProductList from "@components/ProductList"
 import Style from "@styles/Search.module.css"
 
 interface IProps {
@@ -69,11 +68,7 @@ const Search: NextPage<IProps> = ({ results, query, total }) => {
         <Loading />
       ) : products.length > 0 ? (
         <>
-          <ProductList>
-            {products.map((product) => (
-              <Card product={product} key={product.id} />
-            ))}
-          </ProductList>
+          <ProductsGrid products={products} />
           <Pagination page={page} setPage={setPage} total={total} />
         </>
       ) : (

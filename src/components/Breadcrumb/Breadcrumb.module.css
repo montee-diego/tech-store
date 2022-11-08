@@ -1,0 +1,28 @@
+.container {
+  padding-bottom: 1rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.breadcrumb h1 {
+  padding: 0;
+}
+
+.link {
+  color: #255983;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color 0.25s ease;
+}
+
+.link:hover {
+  color: #272727;
+}
+
+.separator {
+  height: 1.5rem;
+}

@@ -6,13 +6,12 @@ import { client } from "@services/apollo-client"
 import { GET_CATEGORY, GET_CATEGORY_FILTERED } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 
+import { ProductsGrid } from "@components/index"
 import Head from "next/head"
-import Card from "@components/Card"
 import Filter from "@components/Filter"
 import Loading from "@components/Loading"
 import OrderBy from "@components/OrderBy"
 import Pagination from "@components/Pagination"
-import ProductList from "@components/ProductList"
 import Style from "@styles/Category.module.css"
 
 enum ProductOrderByInput {
@@ -136,11 +135,7 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
             <Loading />
           ) : products.length > 0 ? (
             <>
-              <ProductList>
-                {products.map((product) => (
-                  <Card product={product} key={product.id} />
-                ))}
-              </ProductList>
+              <ProductsGrid products={products} />
               <Pagination page={page} setPage={setPage} total={filterTotal} />
             </>
           ) : (

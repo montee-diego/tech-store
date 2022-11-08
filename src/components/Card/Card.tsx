@@ -4,13 +4,13 @@ import { displayPrice, displayDiscount } from "@utils/utils"
 import { IProducts } from "@interfaces/interfaces"
 
 import Link from "next/link"
-import Style from "@styles/components/Card.module.css"
+import Style from "./Card.module.css"
 
 interface IProps {
   product: IProducts
 }
 
-const Card: NextPage<IProps> = ({ product }) => {
+export const Card: NextPage<IProps> = ({ product }) => {
   return (
     <Link href={`/product/${product.id}`}>
       <a className={Style.card}>
@@ -45,5 +45,3 @@ const Card: NextPage<IProps> = ({ product }) => {
     </Link>
   )
 }
-
-export default Card

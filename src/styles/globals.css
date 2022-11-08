@@ -30,11 +30,14 @@ footer {
 }
 
 main {
-  width: 95%;
-  margin: 0rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin: 2rem auto;
   max-width: 1200px;
   min-height: 80vh;
   overflow-x: hidden;
+  width: 95%;
 }
 
 section {
@@ -43,7 +46,7 @@ section {
 
 h1 {
   color: #255983;
-  padding: 1rem 0rem;
+  padding-bottom: 1rem;
 }
 
 a {
