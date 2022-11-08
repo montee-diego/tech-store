@@ -4,9 +4,9 @@ import { NextPage } from "next"
 import { ICart } from "@interfaces/interfaces"
 import { cartStore } from "@services/apollo-client"
 import { displayPrice, removeFromCart, updateCart } from "@utils/utils"
+import { Quantity } from "@components/index"
 
 import Link from "next/link"
-import Quantity from "./Quantity"
 import Style from "@styles/components/CartProduct.module.css"
 
 interface IProps {
@@ -46,11 +46,7 @@ const CartProduct: NextPage<IProps> = ({ cartItem }) => {
 
         <div className={Style.info}>
           <div className={Style.quantity}>
-            <Quantity
-              stock={product.quantity}
-              quantity={quantity}
-              setQuantity={setQuantity}
-            />
+            <Quantity stock={product.quantity} quantity={quantity} setQuantity={setQuantity} />
 
             <p>
               {quantity}x {displayPrice(product.price)}

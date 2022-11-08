@@ -1,6 +1,4 @@
-import type { FunctionComponent, ChangeEvent, SetStateAction } from "react"
-import { Dispatch } from "react"
-
+import type { Dispatch, FunctionComponent, ChangeEvent, SetStateAction } from "react"
 import { EnumOrderBy } from "@interfaces/interfaces"
 import Style from "./OrderBy.module.css"
 

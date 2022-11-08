@@ -1,6 +1,4 @@
-import type { FunctionComponent, MouseEvent, SetStateAction } from "react"
-import { Dispatch } from "react"
-
+import type { Dispatch, FunctionComponent, MouseEvent, SetStateAction } from "react"
 import Style from "./Pagination.module.css"
 
 interface IProps {

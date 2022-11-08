@@ -7,10 +7,9 @@ import { displayPrice, displayDiscount, addToCart } from "@utils/utils"
 import { GET_PRODUCT_BY_ID } from "@services/queries"
 import { ISeller, IProducts, ICart } from "@interfaces/interfaces"
 
-import { Breadcrumb, ButtonLink, ProductsGrid } from "@components/index"
+import { Breadcrumb, ButtonLink, ProductsGrid, Quantity } from "@components/index"
 
 import Head from "next/head"
-import Quantity from "@components/Quantity"
 import Seller from "@components/Seller"
 import Style from "@styles/Product.module.css"
 
