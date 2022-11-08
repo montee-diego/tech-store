@@ -4,20 +4,12 @@ import { useLazyQuery } from "@apollo/client"
 
 import { client } from "@services/apollo-client"
 import { GET_CATEGORY, GET_CATEGORY_FILTERED } from "@services/queries"
-import { IProducts } from "@interfaces/interfaces"
+import { IProducts, EnumOrderBy } from "@interfaces/interfaces"
 
-import { Loading, ProductsGrid } from "@components/index"
+import { Loading, OrderBy, Pagination, ProductsGrid } from "@components/index"
 import Head from "next/head"
 import Filter from "@components/Filter"
-import OrderBy from "@components/OrderBy"
-import Pagination from "@components/Pagination"
 import Style from "@styles/Category.module.css"
-
-enum ProductOrderByInput {
-  title_ASC = "title_ASC",
-  price_ASC = "price_ASC",
-  price_DESC = "price_DESC",
-}
 
 interface ICategory {
   brands: string[]
@@ -33,7 +25,7 @@ interface IFilterOpts {
   maxPrice: number
   quantity: number
   isSale: boolean
-  orderBy?: ProductOrderByInput
+  orderBy?: EnumOrderBy
   skip?: number
 }
 
@@ -48,7 +40,7 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
   const [page, setPage] = useState<number>(0)
   const [filterTotal, setFilterTotal] = useState<number>(total)
-  const [orderBy, setOrderBy] = useState<ProductOrderByInput>(ProductOrderByInput.title_ASC)
+  const [orderBy, setOrderBy] = useState<EnumOrderBy>(EnumOrderBy.title_ASC)
   const [filterOpts, setFilterOpts] = useState<IFilterOpts>({
     id: category.id,
     brands: category.brands,

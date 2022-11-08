@@ -24,7 +24,6 @@
 .orderby {
   cursor: pointer;
   white-space: nowrap;
-  /* padding: 0.3rem 0.5rem; */
 }
 
 .orderby input {

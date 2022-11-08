@@ -4,12 +4,10 @@ import { useLazyQuery } from "@apollo/client"
 
 import { client } from "@services/apollo-client"
 import { GET_SEARCH } from "@services/queries"
-import { IProducts } from "@interfaces/interfaces"
+import { IProducts, EnumOrderBy } from "@interfaces/interfaces"
 
-import { Loading, ProductsGrid } from "@components/index"
+import { Loading, OrderBy, Pagination, ProductsGrid } from "@components/index"
 import Head from "next/head"
-import OrderBy from "@components/OrderBy"
-import Pagination from "@components/Pagination"
 import Style from "@styles/Search.module.css"
 
 interface IProps {
@@ -18,16 +16,10 @@ interface IProps {
   total: number
 }
 
-enum ProductOrderByInput {
-  title_ASC = "title_ASC",
-  price_ASC = "price_ASC",
-  price_DESC = "price_DESC",
-}
-
 const Search: NextPage<IProps> = ({ results, query, total }) => {
   const [products, setProducts] = useState<IProducts[]>(results)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [orderBy, setOrderBy] = useState<ProductOrderByInput>(ProductOrderByInput.title_ASC)
+  const [orderBy, setOrderBy] = useState<EnumOrderBy>(EnumOrderBy.title_ASC)
   const [page, setPage] = useState<number>(0)
   const [runQuery, { data }] = useLazyQuery(GET_SEARCH, {
     variables: {

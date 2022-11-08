@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, MouseEvent, useState } from "react"
-import { NextPage } from "next"
+import type { FunctionComponent, MouseEvent, SetStateAction } from "react"
+import { Dispatch } from "react"
 
-import Style from "@styles/components/Pagination.module.css"
+import Style from "./Pagination.module.css"
 
 interface IProps {
   page: number
@@ -9,7 +9,7 @@ interface IProps {
   setPage: Dispatch<SetStateAction<number>>
 }
 
-const Pagination: NextPage<IProps> = ({ page, setPage, total }) => {
+export const Pagination: FunctionComponent<IProps> = ({ page, setPage, total }) => {
   const totalPages = Math.ceil(total / 10)
 
   const handlePage = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -21,12 +21,7 @@ const Pagination: NextPage<IProps> = ({ page, setPage, total }) => {
 
     for (let i = 0; i < totalPages; i++) {
       buttons.push(
-        <button
-          key={i}
-          onClick={handlePage}
-          value={i}
-          className={page === i ? Style.active : ""}
-        >
+        <button key={i} onClick={handlePage} value={i} disabled={page === i}>
           {i + 1}
         </button>
       )
@@ -37,5 +32,3 @@ const Pagination: NextPage<IProps> = ({ page, setPage, total }) => {
 
   return <div className={Style.pagination}>{renderButtons()}</div>
 }
-
-export default Pagination

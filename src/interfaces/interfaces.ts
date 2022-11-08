@@ -42,3 +42,9 @@ export interface ICart {
   product: IProductInCart
   quantity: number
 }
+
+export enum EnumOrderBy {
+  title_ASC = "title_ASC",
+  price_ASC = "price_ASC",
+  price_DESC = "price_DESC",
+}
