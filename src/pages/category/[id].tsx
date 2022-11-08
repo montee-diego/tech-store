@@ -6,10 +6,9 @@ import { client } from "@services/apollo-client"
 import { GET_CATEGORY, GET_CATEGORY_FILTERED } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 
-import { ProductsGrid } from "@components/index"
+import { Loading, ProductsGrid } from "@components/index"
 import Head from "next/head"
 import Filter from "@components/Filter"
-import Loading from "@components/Loading"
 import OrderBy from "@components/OrderBy"
 import Pagination from "@components/Pagination"
 import Style from "@styles/Category.module.css"
@@ -49,9 +48,7 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
   const [page, setPage] = useState<number>(0)
   const [filterTotal, setFilterTotal] = useState<number>(total)
-  const [orderBy, setOrderBy] = useState<ProductOrderByInput>(
-    ProductOrderByInput.title_ASC
-  )
+  const [orderBy, setOrderBy] = useState<ProductOrderByInput>(ProductOrderByInput.title_ASC)
   const [filterOpts, setFilterOpts] = useState<IFilterOpts>({
     id: category.id,
     brands: category.brands,
@@ -117,16 +114,8 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
       </div>
 
       <div className={Style.flex}>
-        <div
-          className={`${Style.filter} ${
-            isFilterOpen ? Style.open : Style.close
-          }`}
-        >
-          <Filter
-            id={category.id}
-            brands={category.brands}
-            setFilterOpts={setFilterOpts}
-          />
+        <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>
+          <Filter id={category.id} brands={category.brands} setFilterOpts={setFilterOpts} />
         </div>
         <div className={Style.products}>
           <OrderBy setOrderBy={setOrderBy} />

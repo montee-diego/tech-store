@@ -1,10 +1,10 @@
-import { FunctionComponent, ReactNode } from "react"
+import type { FunctionComponent, ReactNode } from "react"
 import Slider from "react-slick"
 import type { CustomArrowProps } from "react-slick"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import Style from "@styles/components/Slideshow.module.css"
+import Style from "./Slideshow.module.css"
 
 interface IProps {
   children: ReactNode
@@ -30,7 +30,7 @@ const CustomNextArrow: FunctionComponent<CustomArrowProps> = (props) => {
   )
 }
 
-const Slideshow: FunctionComponent<IProps> = ({ children }) => {
+export const Slideshow: FunctionComponent<IProps> = ({ children }) => {
   const settings = {
     autoplay: true,
     dots: false,
@@ -48,5 +48,3 @@ const Slideshow: FunctionComponent<IProps> = ({ children }) => {
     </div>
   )
 }
-
-export default Slideshow

@@ -5,10 +5,9 @@ import { GET_HOMEPAGE } from "@services/queries"
 import { ICategory, IProducts } from "@interfaces/interfaces"
 import { getRandomNumber } from "@utils/utils"
 
-import { ProductsGrid } from "@components/index"
+import { ProductsGrid, Slideshow } from "@components/index"
 import Head from "next/head"
 import Category from "@components/Category"
-import Slideshow from "@components/Slideshow"
 import Style from "@styles/Home.module.css"
 
 interface IProps {
@@ -22,10 +21,7 @@ const Home: NextPage<IProps> = ({ categories, popular, deals }) => {
     <>
       <Head>
         <title>Tech Store | Home</title>
-        <meta
-          name="description"
-          content="Fulfull your tech needs at the best price!"
-        />
+        <meta name="description" content="Fulfull your tech needs at the best price!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
