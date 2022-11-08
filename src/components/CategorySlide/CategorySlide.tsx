@@ -1,19 +1,15 @@
-import { NextPage } from "next"
-
+import type { FunctionComponent } from "react"
 import { ICategory } from "@interfaces/interfaces"
 import Link from "next/link"
-import Style from "@styles/components/Category.module.css"
+import Style from "./CategorySlide.module.css"
 
 interface IProps {
   category: ICategory
 }
 
-const Category: NextPage<IProps> = ({ category }) => {
+export const CategorySlide: FunctionComponent<IProps> = ({ category }) => {
   return (
-    <div
-      className={Style.slide}
-      style={{ backgroundImage: `url(${category.image.url})` }}
-    >
+    <div className={Style.slide} style={{ backgroundImage: `url(${category.image.url})` }}>
       <div className={Style.overlay}>
         <Link href={`/category/${category.id}`}>
           <a className={Style.link}>{category.name}</a>
@@ -22,5 +18,3 @@ const Category: NextPage<IProps> = ({ category }) => {
     </div>
   )
 }
-
-export default Category
