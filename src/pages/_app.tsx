@@ -4,9 +4,7 @@ import { useEffect, useState } from "react"
 import { ApolloProvider } from "@apollo/client"
 
 import { client, cartStore } from "@services/apollo-client"
-import { Disclaimer } from "@components/index"
-import Footer from "@components/Footer"
-import Nav from "@components/Nav"
+import { Disclaimer, Footer, Navbar } from "@components/index"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(true)
@@ -17,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <Nav />
+      <Navbar />
       <main>
         <Component {...pageProps} />
       </main>

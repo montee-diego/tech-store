@@ -1,4 +1,5 @@
-import { useState, useRef, ChangeEvent, SyntheticEvent } from "react"
+import type { ChangeEvent, FunctionComponent, SyntheticEvent } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/router"
 import { useReactiveVar } from "@apollo/client"
 
@@ -6,9 +7,9 @@ import { cartStore } from "@services/apollo-client"
 import { ICart } from "@interfaces/interfaces"
 
 import Link from "next/link"
-import Style from "@styles/components/Nav.module.css"
+import Style from "./Navbar.module.css"
 
-const Nav = () => {
+export const Navbar: FunctionComponent = () => {
   const [input, setInput] = useState<string>("")
   const router = useRouter()
   const inputEl = useRef<HTMLInputElement | null>(null)
@@ -30,17 +31,14 @@ const Nav = () => {
         <Link href="/">
           <a id={Style.logo}>Tech Store</a>
         </Link>
+
         <form className={Style.search} onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={input}
-            onChange={handleInput}
-            ref={inputEl}
-          />
+          <input type="text" value={input} onChange={handleInput} ref={inputEl} />
           <button type="submit" className={Style.button} title="Search">
             <img src="/img/icon-search.svg" alt="Search" />
           </button>
         </form>
+
         <Link href="/cart">
           <a className={Style.cart}>
             <img src="/img/cart-shopping-solid.svg" alt="Cart" />
@@ -51,5 +49,3 @@ const Nav = () => {
     </nav>
   )
 }
-
-export default Nav
