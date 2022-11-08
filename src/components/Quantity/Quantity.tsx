@@ -21,7 +21,7 @@ export const Quantity: FunctionComponent<IProps> = ({ stock, quantity, setQuanti
       <button className={Style.lbtn} onClick={handleDecrease}>
         -
       </button>
-      <input type="number" name="quantity" value={quantity} size={3} readOnly />
+      <input type="number" name="quantity" value={quantity} readOnly />
       <button className={Style.rbtn} onClick={handleIncrease}>
         +
       </button>

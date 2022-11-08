@@ -16,6 +16,7 @@
 .quantity input {
   border: none;
   text-align: center;
+  width: 5rem;
 }
 
 .quantity input:focus {

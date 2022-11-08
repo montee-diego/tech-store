@@ -54,13 +54,14 @@
 .quantity {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin: 1rem 0rem;
 }
 
 .stock {
   color: #255983;
   font-size: 0.9rem;
-  margin-left: 0.5rem;
 }
 
 .nostock {
