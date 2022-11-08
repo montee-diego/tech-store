@@ -4,8 +4,7 @@ import { useEffect, useState } from "react"
 import { ApolloProvider } from "@apollo/client"
 
 import { client, cartStore } from "@services/apollo-client"
-
-import Disclaimer from "@components/Disclaimer"
+import { Disclaimer } from "@components/index"
 import Footer from "@components/Footer"
 import Nav from "@components/Nav"
 

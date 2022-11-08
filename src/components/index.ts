@@ -1,4 +1,5 @@
 export { Breadcrumb } from "@components/Breadcrumb/Breadcrumb"
 export { ButtonLink } from "@components/ButtonLink/ButtonLink"
 export { Card } from "@components/Card/Card"
+export { Disclaimer } from "@components/Disclaimer/Disclaimer"
 export { ProductsGrid } from "@components/ProductsGrid/ProductsGrid"
