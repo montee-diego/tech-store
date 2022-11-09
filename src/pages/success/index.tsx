@@ -1,6 +1,7 @@
+import { NextPage } from "next"
 import Style from "@styles/Success.module.css"
 
-const Success = () => {
+const Success: NextPage = () => {
   return (
     <section>
       <div className={Style.wrapper}>

@@ -26,3 +26,14 @@
 .separator {
   height: 1.5rem;
 }
+
+@media screen and (max-width: 512px) {
+  .breadcrumb h1,
+  .link {
+    font-size: 1.2rem;
+  }
+
+  .separator {
+    height: 1.2rem;
+  }
+}
