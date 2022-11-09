@@ -62,11 +62,6 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
     setAddedToCart(true)
   }
 
-  // const handleInCart = (event: MouseEvent<HTMLButtonElement>): void => {
-  //   event.preventDefault()
-  //   router.push("/cart")
-  // }
-
   useEffect(() => {
     setAddedToCart(cartStore().findIndex((item) => item.product.id === product.id) >= 0)
   }, [product.id])
@@ -148,13 +143,18 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context?.params?.id
-
   const { data } = await client.query({
     query: GET_PRODUCT_BY_ID,
     variables: {
       id: id,
     },
   })
+
+  if (!data.product) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {

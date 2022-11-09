@@ -6,9 +6,8 @@ import { client } from "@services/apollo-client"
 import { GET_CATEGORY, GET_CATEGORY_FILTERED } from "@services/queries"
 import { IProducts, EnumOrderBy } from "@interfaces/interfaces"
 
-import { Loading, OrderBy, Pagination, ProductsGrid } from "@components/index"
+import { Filter, Loading, OrderBy, Pagination, ProductsGrid } from "@components/index"
 import Head from "next/head"
-import Filter from "@components/Filter"
 import Style from "@styles/Category.module.css"
 
 interface ICategory {
@@ -130,7 +129,6 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context?.params?.id
-
   const { data } = await client.query({
     query: GET_CATEGORY,
     variables: {
@@ -138,6 +136,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       catId: id,
     },
   })
+
+  if (!data.category) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {

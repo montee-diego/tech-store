@@ -1,10 +1,4 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  ReactiveVar,
-  makeVar,
-} from "@apollo/client"
-
+import { ApolloClient, InMemoryCache, ReactiveVar, makeVar } from "@apollo/client"
 import { ICart } from "@interfaces/interfaces"
 
 export const client = new ApolloClient({

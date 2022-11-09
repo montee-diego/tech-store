@@ -1,13 +1,7 @@
-import {
-  useRef,
-  ChangeEvent,
-  SyntheticEvent,
-  Dispatch,
-  SetStateAction,
-} from "react"
-import { NextPage } from "next"
+import type { FunctionComponent, ChangeEvent, SyntheticEvent, SetStateAction } from "react"
+import { useRef, Dispatch } from "react"
 
-import Style from "@styles/components/Filter.module.css"
+import Style from "./Filter.module.css"
 
 interface IFilterOpts {
   id: string
@@ -24,7 +18,7 @@ interface IProps {
   setFilterOpts: Dispatch<SetStateAction<IFilterOpts>>
 }
 
-const Filter: NextPage<IProps> = ({ id, brands, setFilterOpts }) => {
+export const Filter: FunctionComponent<IProps> = ({ id, brands, setFilterOpts }) => {
   const minPrice = useRef<HTMLInputElement | null>(null)
   const maxPrice = useRef<HTMLInputElement | null>(null)
   const selectedBrands = useRef<string[]>([])
@@ -38,9 +32,7 @@ const Filter: NextPage<IProps> = ({ id, brands, setFilterOpts }) => {
     if (checked) {
       selectedBrands.current.push(value)
     } else {
-      selectedBrands.current = selectedBrands.current.filter(
-        (item) => item !== value
-      )
+      selectedBrands.current = selectedBrands.current.filter((item) => item !== value)
     }
   }
 
@@ -76,6 +68,7 @@ const Filter: NextPage<IProps> = ({ id, brands, setFilterOpts }) => {
           </label>
         ))}
       </div>
+
       <h5>Price Range</h5>
       <div className={Style.price}>
         <span className={Style.input}>
@@ -87,6 +80,7 @@ const Filter: NextPage<IProps> = ({ id, brands, setFilterOpts }) => {
           <input type="number" id="max" min={0} max={500000} ref={maxPrice} />
         </span>
       </div>
+
       <h5>Other</h5>
       <div className={`${Style.checkbox} ${Style.filter}`}>
         <label>
@@ -98,9 +92,8 @@ const Filter: NextPage<IProps> = ({ id, brands, setFilterOpts }) => {
           On Sale
         </label>
       </div>
+
       <button type="submit">Apply</button>
     </form>
   )
 }
-
-export default Filter
