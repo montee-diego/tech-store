@@ -1,5 +1,11 @@
 .container {
   padding-bottom: 1rem;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .breadcrumb {
@@ -14,7 +20,7 @@
 
 .link {
   color: #255983;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3.6vw, 1.8rem);
   font-weight: 700;
   transition: color 0.25s ease;
 }
@@ -24,16 +30,5 @@
 }
 
 .separator {
-  height: 1.5rem;
-}
-
-@media screen and (max-width: 512px) {
-  .breadcrumb h1,
-  .link {
-    font-size: 1.2rem;
-  }
-
-  .separator {
-    height: 1.2rem;
-  }
+  height: clamp(1.2rem, 3.6vw, 1.8rem);
 }

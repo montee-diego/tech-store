@@ -46,12 +46,21 @@ section {
 
 h1 {
   color: #255983;
+  font-size: clamp(1.2rem, 3.6vw, 1.8rem);
   padding-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
 }
 
 a {
   color: #272727;
   text-decoration: none;
+}
+
+p {
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 input,

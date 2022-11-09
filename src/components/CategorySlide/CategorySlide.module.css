@@ -16,7 +16,7 @@
 
 .link {
   color: white;
-  font-size: 4rem;
+  font-size: clamp(1.3rem, 8vw, 4rem);
   font-weight: 700;
   padding: 2rem;
 }
@@ -24,9 +24,5 @@
 @media screen and (max-width: 576px) {
   .slide {
     aspect-ratio: 3 / 2;
-  }
-
-  .link {
-    font-size: 2rem;
   }
 }

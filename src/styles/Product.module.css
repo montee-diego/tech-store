@@ -35,7 +35,6 @@
 }
 
 .description {
-  font-size: 1.1rem;
   padding: 1rem 0rem;
 }
 
@@ -100,6 +99,7 @@
 
 .aboutlist ul li {
   line-height: 1.3rem;
+  font-size: clamp(0.9rem, 3vw, 1rem);
   margin-bottom: 0.7rem;
   text-align: justify;
 }
@@ -132,15 +132,5 @@
 
   .aboutlist {
     padding: 1rem 0rem 1rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .info h2,
-  .about h2 {
-    font-size: 1.3rem;
-  }
-
-  .description {
-    font-size: 1rem;
   }
 }
