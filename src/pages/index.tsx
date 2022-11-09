@@ -20,8 +20,6 @@ const Home: NextPage<IProps> = ({ categories, popular, deals }) => {
     <>
       <Head>
         <title>Tech Store | Home</title>
-        <meta name="description" content="Fulfull your tech needs at the best price!" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <section>
