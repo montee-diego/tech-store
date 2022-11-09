@@ -1,6 +1,7 @@
 export { Breadcrumb } from "@components/Breadcrumb/Breadcrumb"
 export { ButtonLink } from "@components/ButtonLink/ButtonLink"
 export { Card } from "@components/Card/Card"
+export { CartProduct } from "@components/CartProduct/CartProduct"
 export { CategorySlide } from "@components/CategorySlide/CategorySlide"
 export { Disclaimer } from "@components/Disclaimer/Disclaimer"
 export { Footer } from "@components/Footer/Footer"

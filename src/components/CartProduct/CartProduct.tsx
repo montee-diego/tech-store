@@ -1,5 +1,5 @@
-import { useEffect, useState, SyntheticEvent, useCallback } from "react"
-import { NextPage } from "next"
+import type { FunctionComponent, SyntheticEvent } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 import { ICart } from "@interfaces/interfaces"
 import { cartStore } from "@services/apollo-client"
@@ -7,13 +7,13 @@ import { displayPrice, removeFromCart, updateCart } from "@utils/utils"
 import { Quantity } from "@components/index"
 
 import Link from "next/link"
-import Style from "@styles/components/CartProduct.module.css"
+import Style from "./CartProduct.module.css"
 
 interface IProps {
   cartItem: ICart
 }
 
-const CartProduct: NextPage<IProps> = ({ cartItem }) => {
+export const CartProduct: FunctionComponent<IProps> = ({ cartItem }) => {
   const [quantity, setQuantity] = useState<number>(cartItem.quantity)
   const { product } = cartItem
 
@@ -65,5 +65,3 @@ const CartProduct: NextPage<IProps> = ({ cartItem }) => {
     </div>
   )
 }
-
-export default CartProduct
