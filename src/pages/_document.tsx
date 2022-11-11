@@ -6,7 +6,6 @@ class PageDocument extends Document {
       <Html>
         <Head>
           <meta name="description" content="Fulfull your tech needs at the best price!" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta name="robots" content="index, follow" />
           <meta property="og:title" content="Tech Store" />
           <meta property="og:url" content="https://tech-store-six.vercel.app/" />
