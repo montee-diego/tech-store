@@ -88,7 +88,9 @@ const Success: NextPage = () => {
 
       <section>
         <h1>Thank you for your purchase!</h1>
-        <p>We've added a summary of your purchase below, you will also receive a copy by e-mail.</p>
+        <p>
+          We have added a summary of your purchase below, you will also receive a copy by e-mail.
+        </p>
       </section>
 
       <section className={Style.products}>
