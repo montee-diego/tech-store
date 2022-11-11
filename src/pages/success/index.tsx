@@ -105,8 +105,8 @@ const Success: NextPage = () => {
           </div>
         ) : (
           <>
-            {products.items.map((item: any) => (
-              <div className={Style.item}>
+            {products.items.map((item: any, index: number) => (
+              <div className={Style.item} key={index}>
                 <div className={Style.info}>
                   <p>{item.title}</p>
 
