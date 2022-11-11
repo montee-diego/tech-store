@@ -1,4 +1,4 @@
-import { ICart } from "../interfaces/interfaces"
+import { ICart } from "@interfaces/interfaces"
 
 export const displayPrice = (price: number): string => {
   return Intl.NumberFormat(undefined, {
@@ -17,9 +17,7 @@ export const getRandomNumber = (min: number, max: number): number => {
 
 export const addToCart = (product: ICart): void => {
   let cart: ICart[] = JSON.parse(localStorage.getItem("cart") || "[]")
-  let indexInCart: number = cart.findIndex(
-    item => item.product.id === product.product.id
-  )
+  let indexInCart: number = cart.findIndex((item) => item.product.id === product.product.id)
 
   if (indexInCart !== -1) {
     cart[indexInCart].quantity += product.quantity
@@ -32,14 +30,14 @@ export const addToCart = (product: ICart): void => {
 
 export const removeFromCart = (id: string): void => {
   let cart: ICart[] = JSON.parse(localStorage.getItem("cart") || "[]")
-  let updatedCart = cart.filter(item => item.product.id !== id)
+  let updatedCart = cart.filter((item) => item.product.id !== id)
 
   localStorage.setItem("cart", JSON.stringify(updatedCart))
 }
 
 export const updateCart = (id: string, quantity: number): void => {
   let cart: ICart[] = JSON.parse(localStorage.getItem("cart") || "[]")
-  let indexInCart: number = cart.findIndex(item => item.product.id === id)
+  let indexInCart: number = cart.findIndex((item) => item.product.id === id)
 
   if (indexInCart !== -1) {
     cart[indexInCart].quantity = quantity
@@ -48,4 +46,8 @@ export const updateCart = (id: string, quantity: number): void => {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart))
+}
+
+export const clearCart = () => {
+  localStorage.removeItem("cart")
 }
