@@ -14,6 +14,15 @@
   gap: 0.7rem;
 }
 
+.breadcrumb a {
+  color: #255983;
+  font-size: clamp(1.2rem, 3.6vw, 1.8rem);
+  font-weight: 700;
+  transition: color 0.25s ease;
+}
+
+/*
+
 .breadcrumb h1 {
   padding: 0;
 }
@@ -28,7 +37,14 @@
 .link:hover {
   color: #272727;
 }
+*/
 
 .separator {
   height: clamp(1.2rem, 3.6vw, 1.8rem);
+}
+
+@media (hover: hover) {
+  .breadcrumb a:hover {
+    color: #272727;
+  }
 }

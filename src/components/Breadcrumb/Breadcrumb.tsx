@@ -8,6 +8,7 @@ interface IProps {
     id: string
     name: string
     products: IProducts[]
+    slug: string
   }
   brand: string
 }
@@ -17,20 +18,22 @@ export const Breadcrumb: FunctionComponent<IProps> = ({ category, brand }) => {
     <div className={`${Style.container} ${Style.breadcrumb}`}>
       <div className={Style.breadcrumb}>
         <Link href="/">
-          <a className={Style.link}>Home</a>
+          Home
         </Link>
         <img className={Style.separator} src="/img/breadcrumb-sep.svg" alt="/" />
       </div>
 
       <div className={Style.breadcrumb}>
-        <Link href={`/category/${category.id}`}>
-          <a className={Style.link}>{category.name}</a>
+        <Link href={`/category/${category.slug}`}>
+          {category.name}
         </Link>
         <img className={Style.separator} src="/img/breadcrumb-sep.svg" alt="/" />
       </div>
 
       <div className={Style.breadcrumb}>
-        <h1>{brand}</h1>
+        <Link href={`/category/${category.slug}/${brand.toLowerCase()}`}>
+          {brand}
+        </Link>
       </div>
     </div>
   )
