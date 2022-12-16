@@ -57,8 +57,6 @@ export const Filter: FunctionComponent<IProps> = ({ id, brands, setFilterOpts })
     router.replace({
       pathname: url.pathname,
       query: {
-        // id: id,
-        // brands: selectedBrands.current.length ? selectedBrands.current : brands,
         minPrice: Number(minPrice?.current?.value) || 0,
         maxPrice: Number(maxPrice?.current?.value) || 500000,
         quantity: stock.current,
