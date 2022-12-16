@@ -27,6 +27,7 @@ export const GET_HOMEPAGE = gql`
         url
       }
       name
+      slug
     }
     popular: products(where: { isOnSale: false }, first: 6, skip: $skip) {
       ...ProductCard
@@ -39,16 +40,108 @@ export const GET_HOMEPAGE = gql`
 
 export const GET_CATEGORY = gql`
   ${PRODUCT_CARD}
-  query GetCategory($id: ID = "", $catId: String! = "") {
-    category(where: { id: $id }) {
+  query GetCategory($slug: String = "") {
+    category(where: { slug: $slug }) {
       id
       name
       brands
       products(first: 10) {
         ...ProductCard
       }
+      slug
     }
-    productsConnection(where: { categoryId: $catId }) {
+    productsConnection(where: { category: { slug: $slug } }) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export const GetCategory = gql`
+  ${PRODUCT_CARD}
+  query GetCategory(
+    $slug: String = ""
+    $minPrice: Float = 0
+    $maxPrice: Float = 500000
+    $quantity: Int = 0
+    $isSale: Boolean = false
+  ) {
+    category(where: { slug: $slug }) {
+      id
+      name
+      brands
+      products(
+        where: {
+          AND: [
+            { quantity_gte: $quantity }
+            { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
+            { price_gte: $minPrice, price_lte: $maxPrice }
+          ]
+        }
+        first: 10
+      ) {
+        ...ProductCard
+      }
+      slug
+    }
+    productsConnection(
+      where: {
+        category: { slug: $slug }
+        AND: [
+          { quantity_gte: $quantity }
+          { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
+          { price_gte: $minPrice, price_lte: $maxPrice }
+        ]
+      }
+    ) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export const GetCategoryBrand = gql`
+  ${PRODUCT_CARD}
+  query GetCategoryBrand(
+    $slug: String = ""
+    $brand: String = ""
+    $minPrice: Float = 0
+    $maxPrice: Float = 500000
+    $quantity: Int = 0
+    $isSale: Boolean = false
+  ) {
+    category(where: { slug: $slug }) {
+      id
+      name
+      brands
+      products(
+        where: {
+          brand_starts_with: $brand
+          AND: [
+            { quantity_gte: $quantity }
+            { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
+            { price_gte: $minPrice, price_lte: $maxPrice }
+          ]
+        }
+        first: 10
+      ) {
+        ...ProductCard
+      }
+      slug
+    }
+    productsConnection(
+      where: {
+        category: { slug: $slug }
+        brand_starts_with: $brand
+        AND: [
+          { quantity_gte: $quantity }
+          { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
+          { price_gte: $minPrice, price_lte: $maxPrice }
+        ]
+      }
+    ) {
       aggregate {
         count
       }
@@ -117,6 +210,7 @@ export const GET_PRODUCT_BY_ID = gql`
           products(where: { NOT: { id: $id } }, first: 4) {
             ...ProductCard
           }
+          slug
         }
       }
       description
@@ -140,17 +234,8 @@ export const GET_PRODUCT_BY_ID = gql`
 
 export const GET_SEARCH = gql`
   ${PRODUCT_CARD}
-  query GetSearch(
-    $query: String = ""
-    $orderBy: ProductOrderByInput
-    $skip: Int = 0
-  ) {
-    products(
-      where: { _search: $query }
-      orderBy: $orderBy
-      first: 10
-      skip: $skip
-    ) {
+  query GetSearch($query: String = "", $orderBy: ProductOrderByInput, $skip: Int = 0) {
+    products(where: { _search: $query }, orderBy: $orderBy, first: 10, skip: $skip) {
       ...ProductCard
     }
     productsConnection(where: { _search: $query }, first: 10, skip: $skip) {
