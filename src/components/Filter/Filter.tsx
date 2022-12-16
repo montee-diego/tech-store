@@ -1,5 +1,7 @@
 import type { FunctionComponent, ChangeEvent, SyntheticEvent, SetStateAction } from "react"
 import { useRef, Dispatch } from "react"
+import { useRouter } from "next/router"
+import Link from "next/link"
 
 import Style from "./Filter.module.css"
 
@@ -19,6 +21,7 @@ interface IProps {
 }
 
 export const Filter: FunctionComponent<IProps> = ({ id, brands, setFilterOpts }) => {
+  const router = useRouter()
   const minPrice = useRef<HTMLInputElement | null>(null)
   const maxPrice = useRef<HTMLInputElement | null>(null)
   const selectedBrands = useRef<string[]>([])
@@ -47,27 +50,48 @@ export const Filter: FunctionComponent<IProps> = ({ id, brands, setFilterOpts })
   function handleSubmit(event: SyntheticEvent): void {
     event.preventDefault()
 
-    setFilterOpts({
-      id: id,
-      brands: selectedBrands.current.length ? selectedBrands.current : brands,
-      minPrice: Number(minPrice?.current?.value) || 0,
-      maxPrice: Number(maxPrice?.current?.value) || 500000,
-      quantity: stock.current,
-      isSale: isSale.current,
+    const url = new URL(window.location.href)
+
+    console.log(router.query.slug)
+
+    router.replace({
+      pathname: url.pathname,
+      query: {
+        // id: id,
+        // brands: selectedBrands.current.length ? selectedBrands.current : brands,
+        minPrice: Number(minPrice?.current?.value) || 0,
+        maxPrice: Number(maxPrice?.current?.value) || 500000,
+        quantity: stock.current,
+        isSale: isSale.current,
+      },
     })
+
+    // setFilterOpts({
+    //   id: id,
+    //   brands: selectedBrands.current.length ? selectedBrands.current : brands,
+    //   minPrice: Number(minPrice?.current?.value) || 0,
+    //   maxPrice: Number(maxPrice?.current?.value) || 500000,
+    //   quantity: stock.current,
+    //   isSale: isSale.current,
+    // })
   }
 
   return (
     <form className={Style.form} onSubmit={handleSubmit}>
-      <h5>Brands</h5>
-      <div className={`${Style.checkbox} ${Style.filter}`}>
-        {displayBrands.map((brand) => (
-          <label key={brand}>
-            <input type="checkbox" value={brand} onChange={handleBrand} />
-            {brand}
-          </label>
-        ))}
-      </div>
+      {brands.length > 0 && (
+        <>
+          <h5>Brands</h5>
+          <div className={`${Style.checkbox} ${Style.filter}`}>
+            {displayBrands.map((brand) => (
+              <Link href={`${router.query.slug}/${brand.toLowerCase()}`}>{brand}</Link>
+              // <label key={brand}>
+              //   <input type="checkbox" value={brand} onChange={handleBrand} />
+              //   {brand}
+              // </label>
+            ))}
+          </div>
+        </>
+      )}
 
       <h5>Price Range</h5>
       <div className={Style.price}>
