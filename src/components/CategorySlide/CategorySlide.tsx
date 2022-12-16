@@ -11,7 +11,7 @@ export const CategorySlide: FunctionComponent<IProps> = ({ category }) => {
   return (
     <div className={Style.slide} style={{ backgroundImage: `url(${category.image.url})` }}>
       <div className={Style.overlay}>
-        <Link href={`/category/${category.id}`}>
+        <Link href={`/category/${category.slug}`}>
           <a className={Style.link}>{category.name}</a>
         </Link>
       </div>
