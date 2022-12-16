@@ -20,6 +20,7 @@ export interface ICategory {
     url: string
   }
   name: string
+  slug: string
 }
 
 export interface ISeller {
