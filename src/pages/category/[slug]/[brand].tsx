@@ -1,9 +1,9 @@
 import type { NextPage, GetServerSideProps } from "next"
-import type { IProducts } from "@interfaces/interfaces"
 import { useState } from "react"
 import { client } from "@services/apollo-client"
-import { GetCategoryBrand } from "@services/queries"
-import { Breadcrumb, Filter, Pagination, ProductsGrid } from "@components/index"
+import { GetCategory } from "@services/queries"
+import { EnumOrderBy, IProducts } from "@interfaces/interfaces"
+import { Breadcrumb, Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
 import Style from "@styles/Brand.module.css"
 
 interface ICategory {
@@ -43,13 +43,15 @@ const BrandPage: NextPage<IProps> = ({ brand, category, total }) => {
 
       <div className={Style.flex}>
         <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>
-          <Filter id={category.id} brands={[]} setFilterOpts={() => {}} />
+          <Filter brands={[]} />
         </div>
         <div className={Style.products}>
+          <OrderBy />
+
           {category.products.length > 0 ? (
             <>
               <ProductsGrid products={category.products} />
-              {/* <Pagination page={page} setPage={setPage} total={filterTotal} /> */}
+              <Pagination total={total} />
             </>
           ) : (
             <p>no results</p>
@@ -69,14 +71,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const { query } = context
   const { data } = await client.query({
-    query: GetCategoryBrand,
+    query: GetCategory,
     variables: {
       slug: query.slug,
       brand: query.brand,
-      minPrice: Number(query.minPrice) || 0,
-      maxPrice: Number(query.maxPrice) || 500000,
+      min: Number(query.min) || 0,
+      max: Number(query.max) || 500000,
       quantity: Number(query.quantity) || 0,
-      isSale: query.isSale === "true",
+      sale: query.sale === "true",
+      sort: Object.values(EnumOrderBy)[Number(query.sort || 0)],
+      skip: query.page ? (Number(query.page) - 1) * 10 : 0,
     },
   })
 
