@@ -1,12 +1,11 @@
-import { useState, useEffect, useCallback } from "react"
-import { GetServerSideProps, NextPage } from "next"
-import { useLazyQuery } from "@apollo/client"
+import type { GetServerSideProps, NextPage } from "next"
+import { useState } from "react"
 
 import { client } from "@services/apollo-client"
-import { GET_CATEGORY, GET_CATEGORY_FILTERED, GetCategory } from "@services/queries"
+import { GetCategory } from "@services/queries"
 import { IProducts, EnumOrderBy } from "@interfaces/interfaces"
 
-import { Filter, Loading, OrderBy, Pagination, ProductsGrid } from "@components/index"
+import { Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
 import Head from "next/head"
 import Style from "@styles/Category.module.css"
 
@@ -17,52 +16,13 @@ interface ICategory {
   products: IProducts[]
 }
 
-interface IFilterOpts {
-  id: string
-  brands: string[]
-  minPrice: number
-  maxPrice: number
-  quantity: number
-  isSale: boolean
-  orderBy?: EnumOrderBy
-  skip?: number
-}
-
 interface IProps {
   category: ICategory
   total: number
 }
 
 const CategoryPage: NextPage<IProps> = ({ category, total }) => {
-  //const [products, setProducts] = useState<IProducts[]>(category.products)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
-  const [page, setPage] = useState<number>(0)
-  const [filterTotal, setFilterTotal] = useState<number>(total)
-  const [orderBy, setOrderBy] = useState<EnumOrderBy>(EnumOrderBy.title_ASC)
-  const [filterOpts, setFilterOpts] = useState<IFilterOpts>({
-    id: category.id,
-    brands: category.brands,
-    minPrice: 0,
-    maxPrice: 5000,
-    quantity: 0,
-    isSale: false,
-    orderBy: orderBy,
-    skip: 10 * page,
-  })
-  const [runQuery, { data }] = useLazyQuery(GET_CATEGORY_FILTERED, {
-    variables: filterOpts,
-    fetchPolicy: "no-cache",
-    notifyOnNetworkStatusChange: true,
-    onCompleted: (data) => {
-      if (data.productsConnection.aggregate.count <= 10) {
-        setPage(0)
-      }
-      setFilterTotal(data.productsConnection.aggregate.count)
-      //setProducts(data.products)
-      setIsLoading(false)
-    },
-  })
 
   const handleShowFilter = (): void => {
     if (isFilterOpen) {
@@ -73,23 +33,6 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
 
     setIsFilterOpen(!isFilterOpen)
   }
-
-  const reloadData = useCallback(() => {
-    setIsLoading(true)
-
-    if (isFilterOpen) {
-      document.body.style.overflow = "unset"
-      setIsFilterOpen(false)
-    }
-
-    runQuery({
-      variables: { ...filterOpts, orderBy: orderBy, skip: 10 * page },
-    })
-  }, [orderBy, filterOpts, page])
-
-  useEffect(() => {
-    reloadData()
-  }, [reloadData])
 
   return (
     <section>
@@ -106,17 +49,15 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
 
       <div className={Style.flex}>
         <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>
-          <Filter id={category.id} brands={category.brands} setFilterOpts={() => {}} />
+          <Filter brands={category.brands} />
         </div>
         <div className={Style.products}>
-          <OrderBy setOrderBy={setOrderBy} />
+          <OrderBy />
 
-          {isLoading ? (
-            <Loading />
-          ) : category.products.length > 0 ? (
+          {category.products.length > 0 ? (
             <>
               <ProductsGrid products={category.products} />
-              <Pagination page={page} setPage={setPage} total={filterTotal} />
+              <Pagination total={total} />
             </>
           ) : (
             <p>No results.</p>
@@ -133,10 +74,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     query: GetCategory,
     variables: {
       slug: query.slug,
-      minPrice: Number(query.minPrice) || 0,
-      maxPrice: Number(query.maxPrice) || 500000,
+      min: Number(query.min) || 0,
+      max: Number(query.max) || 500000,
       quantity: Number(query.quantity) || 0,
-      isSale: query.isSale === "true",
+      sale: query.sale === "true",
+      sort: Object.values(EnumOrderBy)[Number(query.sort || 0)],
+      skip: query.page ? (Number(query.page) - 1) * 10 : 0,
     },
   })
 
