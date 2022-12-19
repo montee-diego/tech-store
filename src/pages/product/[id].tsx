@@ -21,6 +21,7 @@ interface IProduct {
       id: string
       name: string
       products: IProducts[]
+      slug: string
     }
     description: string
     id: string
