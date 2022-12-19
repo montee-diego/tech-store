@@ -1,16 +1,17 @@
-import type { Dispatch, FunctionComponent, ChangeEvent, SetStateAction } from "react"
-import { EnumOrderBy } from "@interfaces/interfaces"
+import type { FC, ChangeEvent } from "react"
+import { useRouter } from "next/router"
 import Style from "./OrderBy.module.css"
 
-interface IProps {
-  setOrderBy: Dispatch<SetStateAction<EnumOrderBy>>
-}
-
-export const OrderBy: FunctionComponent<IProps> = ({ setOrderBy }) => {
+export const OrderBy: FC = () => {
+  const router = useRouter()
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const index: number = Number(event.target.value)
-
-    setOrderBy(Object.values(EnumOrderBy)[index])
+    router.replace({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        sort: Number(event.target.value),
+      },
+    })
   }
 
   return (
