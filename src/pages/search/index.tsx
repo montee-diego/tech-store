@@ -1,12 +1,11 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState } from "react"
 import { GetServerSideProps, NextPage } from "next"
-import { useLazyQuery } from "@apollo/client"
 
 import { client } from "@services/apollo-client"
-import { GET_SEARCH } from "@services/queries"
+import { GetSearch } from "@services/queries"
 import { IProducts, EnumOrderBy } from "@interfaces/interfaces"
 
-import { Loading, OrderBy, Pagination, ProductsGrid } from "@components/index"
+import { Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
 import Head from "next/head"
 import Style from "@styles/Search.module.css"
 
@@ -17,32 +16,17 @@ interface IProps {
 }
 
 const Search: NextPage<IProps> = ({ results, query, total }) => {
-  const [products, setProducts] = useState<IProducts[]>(results)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [orderBy, setOrderBy] = useState<EnumOrderBy>(EnumOrderBy.title_ASC)
-  const [page, setPage] = useState<number>(0)
-  const [runQuery, { data }] = useLazyQuery(GET_SEARCH, {
-    variables: {
-      query: query,
-      orderBy: orderBy,
-      skip: 10 * page,
-    },
-    fetchPolicy: "no-cache",
-    notifyOnNetworkStatusChange: true,
-    onCompleted: (data) => {
-      setProducts(data.products)
-      setIsLoading(false)
-    },
-  })
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
 
-  const reloadData = useCallback(() => {
-    setIsLoading(true)
-    runQuery()
-  }, [orderBy, page])
+  const handleShowFilter = (): void => {
+    if (isFilterOpen) {
+      document.body.style.overflow = "visible"
+    } else {
+      document.body.style.overflow = "hidden"
+    }
 
-  useEffect(() => {
-    reloadData()
-  }, [reloadData])
+    setIsFilterOpen(!isFilterOpen)
+  }
 
   return (
     <section>
@@ -51,36 +35,51 @@ const Search: NextPage<IProps> = ({ results, query, total }) => {
       </Head>
 
       <h1>Search results for &quot;{query}&quot;</h1>
-      <OrderBy setOrderBy={setOrderBy} />
 
-      {isLoading ? (
-        <Loading />
-      ) : products.length > 0 ? (
-        <>
-          <ProductsGrid products={products} />
-          <Pagination page={page} setPage={setPage} total={total} />
-        </>
-      ) : (
-        <p>No results.</p>
-      )}
+      <button className={Style.filterbtn} onClick={handleShowFilter}>
+        {isFilterOpen ? "Close" : "Filter"}
+      </button>
+
+      <div className={Style.flex}>
+        <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>
+          <Filter brands={[]} />
+        </div>
+        <div className={Style.products}>
+          <OrderBy />
+
+          {results.length > 0 ? (
+            <>
+              <ProductsGrid products={results} />
+              <Pagination total={total} />
+            </>
+          ) : (
+            <p>No results.</p>
+          )}
+        </div>
+      </div>
     </section>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { query } = context.query
-
+  const { query } = context
   const { data } = await client.query({
-    query: GET_SEARCH,
+    query: GetSearch,
     variables: {
-      query: query,
+      query: query.query,
+      min: Number(query.min) || 0,
+      max: Number(query.max) || 500000,
+      quantity: Number(query.quantity) || 0,
+      sale: query.sale === "true",
+      sort: Object.values(EnumOrderBy)[Number(query.sort || 0)],
+      skip: query.page ? (Number(query.page) - 1) * 10 : 0,
     },
   })
 
   return {
     props: {
       results: data.products,
-      query: query,
+      query: query.query,
       total: data.productsConnection.aggregate.count,
     },
   }
