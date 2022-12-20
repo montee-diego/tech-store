@@ -1,10 +1,11 @@
-import { useState, MouseEvent, useEffect } from "react"
-import { GetServerSideProps, NextPage } from "next"
-import { useRouter } from "next/router"
+import type { GetServerSideProps, NextPage } from "next"
+import type { MouseEvent } from "react"
+
+import { useState, useEffect } from "react"
 
 import { client, cartStore } from "@services/apollo-client"
 import { displayPrice, displayDiscount, addToCart } from "@utils/utils"
-import { GET_PRODUCT_BY_ID } from "@services/queries"
+import { GetProductByID } from "@services/queries"
 import { ISeller, IProducts, ICart } from "@interfaces/interfaces"
 
 import { Breadcrumb, ButtonLink, ProductsGrid, Quantity, Seller } from "@components/index"
@@ -38,8 +39,6 @@ interface IProduct {
 }
 
 const ProductPage: NextPage<IProduct> = ({ product }) => {
-  const router = useRouter()
-  const { id } = router.query
   const isInCart = cartStore().findIndex((item) => item.product.id === product.id) >= 0
   const [quantity, setQuantity] = useState<number>(1)
   const [addedToCart, setAddedToCart] = useState<boolean>(isInCart)
@@ -143,12 +142,10 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context?.params?.id
+  const { params } = context
   const { data } = await client.query({
-    query: GET_PRODUCT_BY_ID,
-    variables: {
-      id: id,
-    },
+    query: GetProductByID,
+    variables: { id: params?.id },
   })
 
   if (!data.product) {
