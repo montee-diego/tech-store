@@ -1,0 +1,14 @@
+.Title {
+  align-items: center;
+  display: flex;
+  font-size: clamp(1.2rem, 3.6vw, 1.8rem);
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+
+.Title h1,
+.Title a {
+  color: #255983;
+  font-size: clamp(1.2rem, 3.6vw, 1.8rem);
+  font-weight: 700;
+}
