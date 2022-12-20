@@ -1,5 +1,6 @@
 import type { NextPage } from "next"
 import type { ParsedUrlQuery } from "querystring"
+
 import { useRouter } from "next/router"
 import { useEffect, useCallback, useState } from "react"
 
@@ -129,7 +130,7 @@ const Success: NextPage = () => {
       </section>
 
       <section className={Style.link}>
-        <ButtonLink>Home</ButtonLink>
+        <ButtonLink href="/">Home</ButtonLink>
       </section>
     </>
   )

@@ -16,7 +16,7 @@ export const ButtonLink: FC<IProps> = ({ children, href, onClick, secondary }) =
   return (
     <>
       {href ? (
-        <Link href={href}>
+        <Link href={href} passHref>
           <a className={`${Style.button} ${buttonStyle}`}>{children}</a>
         </Link>
       ) : (
