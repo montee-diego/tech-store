@@ -45,7 +45,6 @@ const Success: NextPage = () => {
     }
 
     const data = await response.json()
-    console.log(data)
     const products: IStripeSessionData = {
       total: data.amount_total / 100,
       items: data.line_items.data.map((item: any) => {
