@@ -44,6 +44,17 @@ export interface ICart {
   quantity: number
 }
 
+export interface IQueryParams {
+  params: {
+    min: number
+    max: number
+    quantity: number
+    sale: boolean
+    sort: EnumOrderBy
+    skip: number
+  }
+}
+
 export enum EnumOrderBy {
   title_ASC = "title_ASC",
   price_ASC = "price_ASC",
