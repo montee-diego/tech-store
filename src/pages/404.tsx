@@ -1,4 +1,5 @@
-import { NextPage } from "next"
+import type { NextPage } from "next"
+
 import { ButtonLink } from "@components/index"
 import Style from "@styles/404.module.css"
 

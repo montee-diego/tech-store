@@ -1,7 +1,7 @@
-import { GetServerSideProps, NextPage } from "next"
-import { client } from "@services/apollo-client"
+import type { GetServerSideProps, NextPage } from "next"
 
-import { GET_HOMEPAGE } from "@services/queries"
+import { client } from "@services/apollo-client"
+import { GetHomePage } from "@services/queries"
 import { ICategory, IProducts } from "@interfaces/interfaces"
 import { getRandomNumber } from "@utils/utils"
 
@@ -47,10 +47,8 @@ const Home: NextPage<IProps> = ({ categories, popular, deals }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const skip = getRandomNumber(0, 9)
   const { data } = await client.query({
-    query: GET_HOMEPAGE,
-    variables: {
-      skip: skip,
-    },
+    query: GetHomePage,
+    variables: { skip: skip },
   })
 
   return {
