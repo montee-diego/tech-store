@@ -1,9 +1,3 @@
-.title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .flex {
   display: flex;
   gap: 2.5%;
