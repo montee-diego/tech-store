@@ -1,7 +1,8 @@
-import type { FunctionComponent } from "react"
+import type { FC } from "react"
+
 import Style from "./Footer.module.css"
 
-export const Footer: FunctionComponent = () => {
+export const Footer: FC = () => {
   return (
     <footer>
       <div className={Style.container}>

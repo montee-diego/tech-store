@@ -1,7 +1,8 @@
-import type { FunctionComponent } from "react"
+import type { FC } from "react"
+
 import Style from "./Loading.module.css"
 
-export const Loading: FunctionComponent = () => {
+export const Loading: FC = () => {
   return (
     <div className={Style.wrapper}>
       <div className={Style.loading}></div>

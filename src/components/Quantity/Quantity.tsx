@@ -1,4 +1,5 @@
-import type { Dispatch, FunctionComponent, SetStateAction } from "react"
+import type { Dispatch, FC, SetStateAction } from "react"
+
 import Style from "./Quantity.module.css"
 
 interface IProps {
@@ -7,7 +8,7 @@ interface IProps {
   stock: number
 }
 
-export const Quantity: FunctionComponent<IProps> = ({ stock, quantity, setQuantity }) => {
+export const Quantity: FC<IProps> = ({ stock, quantity, setQuantity }) => {
   const handleDecrease = () => {
     setQuantity(Math.max(1, quantity - 1))
   }

@@ -1,12 +1,14 @@
-import type { FunctionComponent } from "react"
+import type { FC } from "react"
+
 import { ISeller } from "@interfaces/interfaces"
+
 import Style from "./Seller.module.css"
 
 interface IProps {
   seller: ISeller
 }
 
-export const Seller: FunctionComponent<IProps> = ({ seller }) => {
+export const Seller: FC<IProps> = ({ seller }) => {
   return (
     <div className={Style.seller}>
       <span>

@@ -1,5 +1,7 @@
-import type { FunctionComponent } from "react"
+import type { FC } from "react"
+
 import { IProducts } from "@interfaces/interfaces"
+
 import Link from "next/link"
 import Style from "./Breadcrumb.module.css"
 
@@ -13,7 +15,7 @@ interface IProps {
   brand: string
 }
 
-export const Breadcrumb: FunctionComponent<IProps> = ({ category, brand }) => {
+export const Breadcrumb: FC<IProps> = ({ category, brand }) => {
   return (
     <div className={`${Style.container} ${Style.breadcrumb}`}>
       <div className={Style.breadcrumb}>

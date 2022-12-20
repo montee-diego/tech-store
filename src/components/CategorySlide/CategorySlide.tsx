@@ -1,5 +1,7 @@
-import type { FunctionComponent } from "react"
+import type { FC } from "react"
+
 import { ICategory } from "@interfaces/interfaces"
+
 import Link from "next/link"
 import Style from "./CategorySlide.module.css"
 
@@ -7,7 +9,7 @@ interface IProps {
   category: ICategory
 }
 
-export const CategorySlide: FunctionComponent<IProps> = ({ category }) => {
+export const CategorySlide: FC<IProps> = ({ category }) => {
   return (
     <div className={Style.slide} style={{ backgroundImage: `url(${category.image.url})` }}>
       <div className={Style.overlay}>

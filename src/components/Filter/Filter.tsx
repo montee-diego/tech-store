@@ -1,8 +1,9 @@
 import type { FC, SyntheticEvent } from "react"
+
 import { useRef } from "react"
 import { useRouter } from "next/router"
-import Link from "next/link"
 
+import Link from "next/link"
 import Style from "./Filter.module.css"
 
 interface IProps {

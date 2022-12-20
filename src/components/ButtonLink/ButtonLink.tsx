@@ -1,4 +1,4 @@
-import type { FunctionComponent, MouseEventHandler, ReactNode } from "react"
+import type { FC, MouseEventHandler, ReactNode } from "react"
 
 import Link from "next/link"
 import Style from "./ButtonLink.module.css"
@@ -10,7 +10,7 @@ interface IProps {
   secondary?: boolean
 }
 
-export const ButtonLink: FunctionComponent<IProps> = ({ children, href, onClick, secondary }) => {
+export const ButtonLink: FC<IProps> = ({ children, href, onClick, secondary }) => {
   const buttonStyle = secondary ? Style.secondary : Style.primary
 
   return (

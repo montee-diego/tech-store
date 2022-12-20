@@ -1,5 +1,7 @@
 import type { FC, ChangeEvent } from "react"
+
 import { useRouter } from "next/router"
+
 import Style from "./OrderBy.module.css"
 
 export const OrderBy: FC = () => {

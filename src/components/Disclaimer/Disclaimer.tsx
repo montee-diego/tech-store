@@ -1,13 +1,14 @@
-import { Dispatch, SetStateAction, SyntheticEvent, FunctionComponent } from "react"
+import type { Dispatch, SetStateAction, SyntheticEvent, FC } from "react"
 
 import { ButtonLink } from "@components/index"
+
 import Style from "./Disclaimer.module.css"
 
 interface IProps {
   setIsPopupOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const Disclaimer: FunctionComponent<IProps> = ({ setIsPopupOpen }) => {
+export const Disclaimer: FC<IProps> = ({ setIsPopupOpen }) => {
   const handlePopup = (event: SyntheticEvent): void => {
     setIsPopupOpen(false)
   }

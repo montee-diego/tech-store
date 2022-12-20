@@ -1,5 +1,7 @@
 import type { FC, MouseEvent } from "react"
+
 import { useRouter } from "next/router"
+
 import Style from "./Pagination.module.css"
 
 interface IProps {
@@ -17,7 +19,7 @@ export const Pagination: FC<IProps> = ({ total }) => {
       query: {
         ...router.query,
         page: event.currentTarget.value,
-      }
+      },
     })
   }
 
@@ -35,9 +37,5 @@ export const Pagination: FC<IProps> = ({ total }) => {
     return buttons
   }
 
-  return (
-    <div className={Style.pagination}>
-      {renderButtons()}
-    </div>
-  )
+  return <div className={Style.pagination}>{renderButtons()}</div>
 }
