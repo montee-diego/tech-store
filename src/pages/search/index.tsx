@@ -1,9 +1,11 @@
+import type { GetServerSideProps, NextPage } from "next"
+
 import { useState } from "react"
-import { GetServerSideProps, NextPage } from "next"
 
 import { client } from "@services/apollo-client"
 import { GetSearch } from "@services/queries"
-import { IProducts, EnumOrderBy } from "@interfaces/interfaces"
+import { IProducts } from "@interfaces/interfaces"
+import { getQueryParams } from "@utils/getQueryParams"
 
 import { Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
 import Head from "next/head"
@@ -63,17 +65,10 @@ const Search: NextPage<IProps> = ({ results, query, total }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context
+  const { params } = getQueryParams(query)
   const { data } = await client.query({
     query: GetSearch,
-    variables: {
-      query: query.query,
-      min: Number(query.min) || 0,
-      max: Number(query.max) || 500000,
-      quantity: Number(query.quantity) || 0,
-      sale: query.sale === "true",
-      sort: Object.values(EnumOrderBy)[Number(query.sort || 0)],
-      skip: query.page ? (Number(query.page) - 1) * 10 : 0,
-    },
+    variables: { query: query.query, ...params },
   })
 
   return {
