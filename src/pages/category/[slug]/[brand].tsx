@@ -1,9 +1,14 @@
 import type { NextPage, GetServerSideProps } from "next"
+
 import { useState } from "react"
+
 import { client } from "@services/apollo-client"
 import { GetCategory } from "@services/queries"
-import { EnumOrderBy, IProducts } from "@interfaces/interfaces"
+import { IProducts } from "@interfaces/interfaces"
+import { getQueryParams } from "@utils/getQueryParams"
+
 import { Breadcrumb, Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
+import Head from "next/head"
 import Style from "@styles/Brand.module.css"
 
 interface ICategory {
@@ -35,6 +40,12 @@ const BrandPage: NextPage<IProps> = ({ brand, category, total }) => {
 
   return (
     <section>
+      <Head>
+        <title>
+          Tech Store | {brand} {category.name}
+        </title>
+      </Head>
+
       <Breadcrumb category={category} brand={brand} />
 
       <button className={Style.filterbtn} onClick={handleShowFilter}>
@@ -70,18 +81,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const { query } = context
+  const { params } = getQueryParams(query)
   const { data } = await client.query({
     query: GetCategory,
-    variables: {
-      slug: query.slug,
-      brand: query.brand,
-      min: Number(query.min) || 0,
-      max: Number(query.max) || 500000,
-      quantity: Number(query.quantity) || 0,
-      sale: query.sale === "true",
-      sort: Object.values(EnumOrderBy)[Number(query.sort || 0)],
-      skip: query.page ? (Number(query.page) - 1) * 10 : 0,
-    },
+    variables: { slug: query.slug, brand: query.brand, ...params },
   })
 
   if (data.category && query.brand) {
