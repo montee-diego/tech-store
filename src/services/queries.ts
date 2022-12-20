@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client"
 
-export const PRODUCT_CARD = gql`
+const ProductCardFragment = gql`
   fragment ProductCard on Product {
     brand
     id
@@ -15,9 +15,9 @@ export const PRODUCT_CARD = gql`
   }
 `
 
-export const GET_HOMEPAGE = gql`
-  ${PRODUCT_CARD}
-  query GetCategories($skip: Int = 0) {
+export const GetHomePage = gql`
+  ${ProductCardFragment}
+  query GetHomePage($skip: Int = 0) {
     categories(orderBy: name_ASC) {
       icon {
         url
@@ -38,77 +38,9 @@ export const GET_HOMEPAGE = gql`
   }
 `
 
-// export const GET_CATEGORY = gql`
-//   ${PRODUCT_CARD}
-//   query GetCategory($slug: String = "") {
-//     category(where: { slug: $slug }) {
-//       id
-//       name
-//       brands
-//       products(first: 10) {
-//         ...ProductCard
-//       }
-//       slug
-//     }
-//     productsConnection(where: { category: { slug: $slug } }) {
-//       aggregate {
-//         count
-//       }
-//     }
-//   }
-// `
-
-// export const GetCategory = gql`
-//   ${PRODUCT_CARD}
-//   query GetCategory(
-//     $slug: String = ""
-//     $minPrice: Float = 0
-//     $maxPrice: Float = 500000
-//     $quantity: Int = 0
-//     $isSale: Boolean = false
-//     $orderBy: ProductOrderByInput
-//     $skip: Int = 0
-//   ) {
-//     category(where: { slug: $slug }) {
-//       id
-//       name
-//       brands
-//       products(
-//         where: {
-//           AND: [
-//             { quantity_gte: $quantity }
-//             { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
-//             { price_gte: $minPrice, price_lte: $maxPrice }
-//           ]
-//         }
-//         orderBy: $orderBy
-//         first: 10
-//         skip: $skip
-//       ) {
-//         ...ProductCard
-//       }
-//       slug
-//     }
-//     productsConnection(
-//       where: {
-//         category: { slug: $slug }
-//         AND: [
-//           { quantity_gte: $quantity }
-//           { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
-//           { price_gte: $minPrice, price_lte: $maxPrice }
-//         ]
-//       }
-//     ) {
-//       aggregate {
-//         count
-//       }
-//     }
-//   }
-// `
-
 export const GetCategory = gql`
-  ${PRODUCT_CARD}
-  query GetCategoryBrand(
+  ${ProductCardFragment}
+  query GetCategory(
     $slug: String = ""
     $brand: String = ""
     $min: Float = 0
@@ -157,54 +89,8 @@ export const GetCategory = gql`
   }
 `
 
-// export const GET_CATEGORY_FILTERED = gql`
-//   ${PRODUCT_CARD}
-//   query GetCategoryFiltered(
-//     $id: String! = ""
-//     $brands: [String!] = []
-//     $minPrice: Float = 0
-//     $maxPrice: Float = 0
-//     $quantity: Int = 0
-//     $isSale: Boolean = false
-//     $orderBy: ProductOrderByInput
-//     $skip: Int = 0
-//   ) {
-//     products(
-//       where: {
-//         categoryId: $id
-//         brand_in: $brands
-//         AND: [
-//           { quantity_gte: $quantity }
-//           { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
-//           { price_gte: $minPrice, price_lte: $maxPrice }
-//         ]
-//       }
-//       orderBy: $orderBy
-//       first: 10
-//       skip: $skip
-//     ) {
-//       ...ProductCard
-//     }
-//     productsConnection(
-//       where: {
-//         categoryId: $id
-//         brand_in: $brands
-//         AND: [
-//           { quantity_gte: $quantity }
-//           { OR: [{ isOnSale: $isSale }, { isOnSale_not: false }] }
-//           { price_gte: $minPrice, price_lte: $maxPrice }
-//         ]
-//       }
-//     ) {
-//       aggregate {
-//         count
-//       }
-//     }
-//   }
-// `
-
-export const GET_PRODUCT_BY_ID = gql`
-  ${PRODUCT_CARD}
+export const GetProductByID = gql`
+  ${ProductCardFragment}
   query GetProductByID($id: ID = "") {
     product(where: { id: $id }) {
       about {
@@ -241,7 +127,7 @@ export const GET_PRODUCT_BY_ID = gql`
 `
 
 export const GetSearch = gql`
-  ${PRODUCT_CARD}
+  ${ProductCardFragment}
   query GetSearch(
     $query: String = ""
     $min: Float = 0
@@ -284,17 +170,3 @@ export const GetSearch = gql`
     }
   }
 `
-
-// export const GET_SEARCH = gql`
-//   ${PRODUCT_CARD}
-//   query GetSearch($query: String = "", $sort: ProductOrderByInput, $skip: Int = 0) {
-//     products(where: { _search: $query }, orderBy: $sort, first: 10, skip: $skip) {
-//       ...ProductCard
-//     }
-//     productsConnection(where: { _search: $query }, first: 10, skip: $skip) {
-//       aggregate {
-//         count
-//       }
-//     }
-//   }
-// `
