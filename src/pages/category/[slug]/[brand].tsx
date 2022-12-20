@@ -7,7 +7,7 @@ import { GetCategory } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 import { getQueryParams } from "@utils/getQueryParams"
 
-import { Breadcrumb, Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
+import { Breadcrumb, Filter, OrderBy, Pagination, ProductsGrid, Title } from "@components/index"
 import Head from "next/head"
 import Style from "@styles/Brand.module.css"
 
@@ -46,11 +46,12 @@ const BrandPage: NextPage<IProps> = ({ brand, category, total }) => {
         </title>
       </Head>
 
-      <Breadcrumb category={category} brand={brand} />
-
-      <button className={Style.filterbtn} onClick={handleShowFilter}>
-        {isFilterOpen ? "Close" : "Filter"}
-      </button>
+      <Title>
+        <Breadcrumb category={category} brand={brand} />
+        <button className={Style.filterbtn} onClick={handleShowFilter}>
+          {isFilterOpen ? "Close" : "Filter"}
+        </button>
+      </Title>
 
       <div className={Style.flex}>
         <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>

@@ -6,7 +6,7 @@ import { useEffect, useCallback, useState } from "react"
 
 import { cartStore } from "@services/apollo-client"
 import { displayPrice, clearCart } from "@utils/utils"
-import { ButtonLink, Loading } from "@components/index"
+import { ButtonLink, Loading, Title } from "@components/index"
 
 import Head from "next/head"
 import Style from "./index.module.css"
@@ -87,7 +87,9 @@ const Success: NextPage = () => {
       </Head>
 
       <section>
-        <h1>Thank you for your purchase!</h1>
+        <Title>
+          <h1>Thank you for your purchase!</h1>
+        </Title>
         <p>
           We have added a summary of your purchase below, you will also receive a copy by e-mail.
         </p>

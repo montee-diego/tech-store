@@ -7,7 +7,7 @@ import { GetCategory } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 import { getQueryParams } from "@utils/getQueryParams"
 
-import { Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
+import { Breadcrumb, Filter, OrderBy, Pagination, ProductsGrid, Title } from "@components/index"
 import Head from "next/head"
 import Style from "@styles/Category.module.css"
 
@@ -16,6 +16,7 @@ interface ICategory {
   id: string
   name: string
   products: IProducts[]
+  slug: string
 }
 
 interface IProps {
@@ -42,12 +43,12 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
         <title>Tech Store | {category.name}</title>
       </Head>
 
-      <div className={Style.title}>
-        <h1>{category.name}</h1>
+      <Title>
+        <Breadcrumb category={category} />
         <button className={Style.filterbtn} onClick={handleShowFilter}>
           {isFilterOpen ? "Close" : "Filter"}
         </button>
-      </div>
+      </Title>
 
       <div className={Style.flex}>
         <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>

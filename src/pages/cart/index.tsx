@@ -7,7 +7,7 @@ import { displayPrice } from "@utils/utils"
 
 import Head from "next/head"
 import getStripe from "@services/getStripe"
-import { ButtonLink, CartProduct } from "@components/index"
+import { ButtonLink, CartProduct, Title } from "@components/index"
 import Style from "@styles/Cart.module.css"
 
 const Cart: NextPage = () => {
@@ -45,7 +45,10 @@ const Cart: NextPage = () => {
 
       {cart.length > 0 ? (
         <>
-          <h1>Cart</h1>
+          <Title>
+            <h1>Cart</h1>
+          </Title>
+
           <div className={Style.products}>
             {cart.map((product) => (
               <CartProduct cartItem={product} key={product.product.id} />

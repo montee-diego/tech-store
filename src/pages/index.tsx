@@ -5,7 +5,7 @@ import { GetHomePage } from "@services/queries"
 import { ICategory, IProducts } from "@interfaces/interfaces"
 import { getRandomNumber } from "@utils/utils"
 
-import { CategorySlide, ProductsGrid, Slideshow } from "@components/index"
+import { CategorySlide, ProductsGrid, Slideshow, Title } from "@components/index"
 import Head from "next/head"
 import Style from "@styles/Home.module.css"
 
@@ -23,7 +23,9 @@ const Home: NextPage<IProps> = ({ categories, popular, deals }) => {
       </Head>
 
       <section>
-        <h1>Browse Categories</h1>
+        <Title>
+          <h1>Browse Categories</h1>
+        </Title>
         <Slideshow>
           {categories.map((category) => (
             <CategorySlide category={category} key={category.id} />
@@ -32,12 +34,16 @@ const Home: NextPage<IProps> = ({ categories, popular, deals }) => {
       </section>
 
       <section>
-        <h1>Popular</h1>
+        <Title>
+          <h1>Popular</h1>
+        </Title>
         <ProductsGrid products={popular} />
       </section>
 
       <section>
-        <h1>Great Deals</h1>
+        <Title>
+          <h1>Great Deals</h1>
+        </Title>
         <ProductsGrid products={deals} />
       </section>
     </>

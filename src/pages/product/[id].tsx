@@ -8,7 +8,7 @@ import { displayPrice, displayDiscount, addToCart } from "@utils/utils"
 import { GetProductByID } from "@services/queries"
 import { ISeller, IProducts, ICart } from "@interfaces/interfaces"
 
-import { Breadcrumb, ButtonLink, ProductsGrid, Quantity, Seller } from "@components/index"
+import { Breadcrumb, ButtonLink, ProductsGrid, Quantity, Seller, Title } from "@components/index"
 import Head from "next/head"
 import Style from "@styles/Product.module.css"
 
@@ -73,7 +73,9 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
       </Head>
 
       <section>
-        <Breadcrumb category={product.category} brand={product.brand} />
+        <Title>
+          <Breadcrumb category={product.category} brand={product.brand} />
+        </Title>
 
         <div className={Style.product}>
           <div className={Style.details}>

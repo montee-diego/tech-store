@@ -7,7 +7,7 @@ import { GetSearch } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 import { getQueryParams } from "@utils/getQueryParams"
 
-import { Filter, OrderBy, Pagination, ProductsGrid } from "@components/index"
+import { Filter, OrderBy, Pagination, ProductsGrid, Title } from "@components/index"
 import Head from "next/head"
 import Style from "@styles/Search.module.css"
 
@@ -36,11 +36,12 @@ const Search: NextPage<IProps> = ({ results, query, total }) => {
         <title>Tech Store | Search: {query}</title>
       </Head>
 
-      <h1>Search results for &quot;{query}&quot;</h1>
-
-      <button className={Style.filterbtn} onClick={handleShowFilter}>
-        {isFilterOpen ? "Close" : "Filter"}
-      </button>
+      <Title>
+        <h1>Search results for &quot;{query}&quot;</h1>
+        <button className={Style.filterbtn} onClick={handleShowFilter}>
+          {isFilterOpen ? "Close" : "Filter"}
+        </button>
+      </Title>
 
       <div className={Style.flex}>
         <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>
