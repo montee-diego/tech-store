@@ -17,20 +17,20 @@ export const OrderBy: FC = () => {
   }
 
   return (
-    <div className={Style.container}>
+    <div className={Style.Container}>
       <h5>Sort by:</h5>
-      <div className={Style.wrapper}>
-        <label className={Style.orderby}>
+      <div className={Style.List}>
+        <label className={Style.Option}>
           <input type="radio" name="orderBy" onChange={handleChange} value={0} defaultChecked />
           <span>Featured</span>
         </label>
 
-        <label className={Style.orderby}>
+        <label className={Style.Option}>
           <input type="radio" name="orderBy" onChange={handleChange} value={1} />
           <span>Lowest Price</span>
         </label>
 
-        <label className={Style.orderby}>
+        <label className={Style.Option}>
           <input type="radio" name="orderBy" onChange={handleChange} value={2} />
           <span>Highest Price</span>
         </label>
