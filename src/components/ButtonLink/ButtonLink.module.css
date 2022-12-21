@@ -1,4 +1,4 @@
-.button {
+.Button {
   border: none;
   border-radius: 2px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -10,22 +10,32 @@
   transition: background-color 0.25s ease;
 }
 
-.primary {
+.Primary {
   background-color: #897ee6;
   color: white;
   outline: 1px solid #6a5bf7;
 }
 
-.primary:hover {
-  background-color: #6a5bf7;
+.Primary:focus {
+  outline: 3px solid #a398ffa6;
 }
 
-.secondary {
+.Secondary {
   background-color: #1feb52;
   color: #272727;
   outline: 1px solid #12a737;
 }
 
-.secondary:hover {
-  background-color: #70ff94;
+.Secondary:focus {
+  outline: 3px solid #60ff88b0;
+}
+
+@media (hover: hover) {
+  .Primary:hover {
+    background-color: #6a5bf7;
+  }
+
+  .Secondary:hover {
+    background-color: #70ff94;
+  }
 }

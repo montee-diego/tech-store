@@ -11,16 +11,16 @@ interface IProps {
 }
 
 export const ButtonLink: FC<IProps> = ({ children, href, onClick, secondary }) => {
-  const buttonStyle = secondary ? Style.secondary : Style.primary
+  const buttonStyle = secondary ? Style.Secondary : Style.Primary
 
   return (
     <>
       {href ? (
         <Link href={href} passHref>
-          <a className={`${Style.button} ${buttonStyle}`}>{children}</a>
+          <a className={`${Style.Button} ${buttonStyle}`}>{children}</a>
         </Link>
       ) : (
-        <button className={`${Style.button} ${buttonStyle}`} onClick={onClick}>
+        <button className={`${Style.Button} ${buttonStyle}`} onClick={onClick}>
           {children}
         </button>
       )}
