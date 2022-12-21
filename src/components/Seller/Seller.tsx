@@ -10,7 +10,7 @@ interface IProps {
 
 export const Seller: FC<IProps> = ({ seller }) => {
   return (
-    <div className={Style.seller}>
+    <div className={Style.Seller}>
       <span>
         Sold by <strong>{seller.name}</strong>
       </span>

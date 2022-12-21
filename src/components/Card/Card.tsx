@@ -12,27 +12,30 @@ interface IProps {
 
 export const Card: NextPage<IProps> = ({ product }) => {
   return (
-    <Link href={`/product/${product.id}`}>
-      <a className={Style.card}>
-        <div className={Style.image}>
+    <Link href={`/product/${product.id}`} passHref>
+      <a className={Style.Container}>
+        <div className={Style.Image}>
           <img src={product.image.url} alt="product image" />
         </div>
 
-        <div className={Style.info}>
+        <div className={Style.Info}>
           {product.quantity < 1 && (
-            <span className={Style.nostock}>NO STOCK</span>
+            <span className={Style.Stock}>
+              NO STOCK
+            </span>
           )}
 
-          <div className={Style.flex}>
+          {product.isOnSale && (
+            <span className={Style.Save}>
+              Save {displayDiscount(product.listPrice, product.price)}%
+            </span>
+          )}
+
+          <div className={Style.Price}>
             {product.isOnSale ? (
               <>
-                <h3 className={Style.sale}>{displayPrice(product.price)}</h3>
-                <h3 className={Style.oldprice}>
-                  {displayPrice(product.listPrice)}
-                </h3>
-                <span className={Style.save}>
-                  Save {displayDiscount(product.listPrice, product.price)}%
-                </span>
+                <h3 className={Style.CurPrice}>{displayPrice(product.price)}</h3>
+                <h3 className={Style.OldPrice}>{displayPrice(product.listPrice)}</h3>
               </>
             ) : (
               <h3>{displayPrice(product.price)}</h3>

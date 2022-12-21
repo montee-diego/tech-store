@@ -1,59 +1,61 @@
-.form {
+.Form {
   width: 256px;
   min-width: 256px;
 }
 
-.form h5 {
-  color: #545868;
+.Form * {
   font-size: 0.9rem;
+}
+
+.Form h5 {
+  color: #545868;
   font-weight: 400;
   padding: 0.3rem 0rem;
   margin-bottom: 0.5rem;
 }
 
-.form button {
-  background-color: white;
-  font-size: 0.9rem;
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
-  cursor: pointer;
+.Form button {
   float: right;
 }
 
-.form button:hover {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.checkbox {
+.List {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.checkbox input {
+.List input {
   margin-right: 0.5rem;
 }
 
-.price {
+.List input:focus {
+  outline: none;
+}
+
+.Form button,
+.List a,
+.List label {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.Form button:focus,
+.List a:focus,
+.List label:focus-within {
+  outline: 2px solid var(--color-focus);
+}
+
+.Price {
   display: flex;
-  font-size: 0.9rem;
   margin-bottom: 1.5rem;
   gap: 0.5rem;
 }
 
-.filter a,
-.filter label {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-}
-
-.input {
+.Input {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -65,15 +67,14 @@
   width: 50%;
 }
 
-.input label {
+.Input label {
   display: inline-block;
   width: 2rem;
 }
 
-.input input {
+.Input input {
   border: none;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
   padding: 0.5rem 0rem 0.5rem 0.5rem;
   outline: none;
   width: 10px;
@@ -81,18 +82,22 @@
 }
 
 @media (hover: hover) {
-  .filter a:hover {
+  .Form button:hover {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  .List a:hover {
     text-decoration: underline;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .form {
+  .Form {
     width: 100%;
     min-height: 90vh;
   }
 
-  .checkbox {
+  .List {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
@@ -100,7 +105,7 @@
     margin-bottom: 1rem;
   }
 
-  .checkbox label {
+  .List label {
     flex: 1;
   }
 }

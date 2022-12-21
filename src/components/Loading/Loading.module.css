@@ -1,4 +1,4 @@
-.wrapper {
+.Container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,17 +6,17 @@
   padding: 1rem 0rem;
 }
 
-.wrapper p {
+.Container p {
   color: #255983;
 }
 
-.loading {
+.Loading {
   display: inline-block;
   width: 58px;
   height: 58px;
 }
 
-.loading:after {
+.Loading:after {
   content: " ";
   display: block;
   width: 32px;

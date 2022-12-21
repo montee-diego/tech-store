@@ -1,17 +1,17 @@
-.seller {
-  display: flex;
+.Seller {
   align-items: center;
+  display: flex;
 }
 
-.seller img {
-  width: 1rem;
+.Seller img {
   height: 1rem;
   margin-left: 0.3rem;
   pointer-events: none;
   user-select: none;
+  width: 1rem;
 }
 
-.seller span {
+.Seller span {
   color: #255983;
   padding: 0.2rem 0rem;
 }

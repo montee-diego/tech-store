@@ -22,26 +22,29 @@ export const Navbar: FunctionComponent = () => {
 
   function handleSubmit(event: SyntheticEvent): void {
     event.preventDefault()
-    router.push(`/search?query=${input}`)
-    inputEl?.current?.blur()
+
+    if (input.length > 0) {
+      router.push(`/search?query=${input}`)
+      inputEl?.current?.blur()
+    }
   }
 
   return (
     <nav>
-      <div className={Style.navbar}>
-        <Link href="/">
+      <div className={Style.Container}>
+        <Link href="/" passHref>
           <a id={Style.logo}>Tech Store</a>
         </Link>
 
-        <form className={Style.search} onSubmit={handleSubmit}>
+        <form className={Style.Search} onSubmit={handleSubmit}>
           <input type="text" value={input} onChange={handleInput} ref={inputEl} />
-          <button type="submit" className={Style.button} title="Search">
+          <button type="submit" title="Search">
             <img src="/img/icon-search.svg" alt="Search" />
           </button>
         </form>
 
-        <Link href="/cart">
-          <a className={Style.cart}>
+        <Link href="/cart" passHref>
+          <a className={Style.Cart}>
             <img src="/img/cart-shopping-solid.svg" alt="Cart" />
             <span>{cart.length}</span>
           </a>

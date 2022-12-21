@@ -11,10 +11,10 @@ interface IProps {
 
 export const CategorySlide: FC<IProps> = ({ category }) => {
   return (
-    <div className={Style.slide} style={{ backgroundImage: `url(${category.image.url})` }}>
-      <div className={Style.overlay}>
-        <Link href={`/category/${category.slug}`}>
-          <a className={Style.link}>{category.name}</a>
+    <div className={Style.Slide} style={{ backgroundImage: `url(${category.image.url})` }}>
+      <div className={Style.Overlay}>
+        <Link href={`/category/${category.slug}`} passHref>
+          <a tabIndex={-1}>{category.name}</a>
         </Link>
       </div>
     </div>

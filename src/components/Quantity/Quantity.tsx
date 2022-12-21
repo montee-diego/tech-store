@@ -18,14 +18,10 @@ export const Quantity: FC<IProps> = ({ stock, quantity, setQuantity }) => {
   }
 
   return (
-    <div className={Style.quantity}>
-      <button className={Style.lbtn} onClick={handleDecrease}>
-        -
-      </button>
-      <input type="number" name="quantity" value={quantity} readOnly />
-      <button className={Style.rbtn} onClick={handleIncrease}>
-        +
-      </button>
+    <div className={Style.Quantity}>
+      <button onClick={handleDecrease}>-</button>
+      <input type="number" name="quantity" value={quantity} readOnly tabIndex={-1} />
+      <button onClick={handleIncrease}>+</button>
     </div>
   )
 }

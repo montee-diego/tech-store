@@ -11,7 +11,7 @@ interface IProps {
 
 export const ProductsGrid: FC<IProps> = ({ products }) => {
   return (
-    <div className={Style.products}>
+    <div className={Style.Products}>
       {products.map((product) => (
         <Card product={product} key={product.id} />
       ))}

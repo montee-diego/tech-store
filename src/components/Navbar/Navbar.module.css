@@ -1,75 +1,95 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
+.Container {
   align-items: center;
+  display: flex;
   gap: 1rem;
-  width: 95%;
+  justify-content: space-between;
+  margin: 0rem auto;
   max-width: 1200px;
   min-height: 100%;
-  margin: 0rem auto;
+  width: 95%;
 }
 
 #logo {
+  border-radius: 0.3rem;
   font-family: "Iceland", cursive;
   font-size: 1.7rem;
 }
 
-.search {
-  display: flex;
+#logo:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+.Search {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
+  display: flex;
+  flex: 1;
   overflow: hidden;
-  flex: 1;
 }
 
-.search:focus-within {
-  outline: 3px solid rgba(0, 0, 0, 0.1);
+.Search:focus-within {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  outline: 3px solid var(--color-focus);
 }
 
-.search input {
-  border: none;
+.Search input,
+.Search button {
   background-color: transparent;
+  border: none;
+}
+
+.Search input {
   color: #545868;
-  font-size: 0.9rem;
-  padding: 0.5rem;
-  outline: none;
   flex: 1;
+  font-size: 0.9rem;
+  outline: none;
+  padding: 0.5rem;
   width: 10px;
 }
 
-.button {
-  display: flex;
+.Search button {
   align-items: center;
-  background-color: transparent;
-  border: none;
   cursor: pointer;
+  display: flex;
   padding: 0rem 0.5rem;
 }
 
-.button img {
-  width: 1rem;
-  height: 1rem;
+.Search button:focus {
+  outline: none;
 }
 
-.cart {
-  display: flex;
+.Search button img {
+  height: 1rem;
+  width: 1rem;
+}
+
+.Cart {
   align-items: center;
-  gap: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
   padding: 0.5rem 1rem;
 }
 
-.cart:hover {
+.Cart:focus {
   border: 1px solid rgba(0, 0, 0, 0.4);
+  outline: 3px solid var(--color-focus);
 }
 
-.cart span {
+.Cart span {
   font-size: 0.9rem;
 }
 
-.cart img {
+.Cart img {
   width: 1rem;
   height: 1rem;
+}
+
+@media (hover: hover) {
+  .Cart:hover {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+  }
 }

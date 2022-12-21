@@ -1,41 +1,55 @@
-.container {
+.Container {
   border-radius: 0.5rem;
   overflow: hidden;
 }
 
-.arrow {
+.Arrow {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  bottom: 0;
+  cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
   position: absolute;
   top: 0;
-  bottom: 0;
   transition: background-color 0.25s ease;
   width: 3rem;
   z-index: 10;
 }
 
-.arrow img {
+.Arrow:focus {
+  outline: none;
+}
+
+.Arrow:focus .Icon {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+.Icon {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.Icon img {
   width: 1.5rem;
 }
 
-.prev {
+.Prev {
   left: 0;
 }
 
-.next {
+.Next {
   right: 0;
 }
 
 @media (hover: hover) {
-  .arrow:hover {
+  .Arrow:hover {
     background-color: rgba(0, 0, 0, 0.2);
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .arrow img {
-    width: 1rem;
   }
 }

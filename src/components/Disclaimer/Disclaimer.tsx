@@ -14,8 +14,8 @@ export const Disclaimer: FC<IProps> = ({ setIsPopupOpen }) => {
   }
 
   return (
-    <div className={Style.container}>
-      <div className={Style.popup}>
+    <div className={Style.Container}>
+      <div className={Style.Popup}>
         <h2>Disclaimer</h2>
         <p>
           This site is a <strong>portfolio project</strong> only, none of the products are for sale.

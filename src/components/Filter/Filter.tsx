@@ -35,11 +35,11 @@ export const Filter: FC<IProps> = ({ brands }) => {
   }
 
   return (
-    <form className={Style.form} onSubmit={handleSubmit}>
+    <form className={Style.Form} onSubmit={handleSubmit}>
       {brands.length > 0 && (
         <>
           <h5>Brands</h5>
-          <div className={`${Style.checkbox} ${Style.filter}`}>
+          <div className={Style.List}>
             {displayBrands.map((brand) => (
               <Link href={`/category/${router.query.slug}/${brand.toLowerCase()}`} key={brand}>
                 {brand}
@@ -50,26 +50,26 @@ export const Filter: FC<IProps> = ({ brands }) => {
       )}
 
       <h5>Price Range</h5>
-      <div className={Style.price}>
-        <span className={Style.input}>
+      <div className={Style.Price}>
+        <span className={Style.Input}>
           <label htmlFor="min">Min</label>
           <input type="number" id="min" min={0} max={500000} ref={min} />
         </span>
-        <span className={Style.input}>
+        <span className={Style.Input}>
           <label htmlFor="max">Max</label>
           <input type="number" id="max" min={0} max={500000} ref={max} />
         </span>
       </div>
 
       <h5>Other</h5>
-      <div className={`${Style.checkbox} ${Style.filter}`}>
+      <div className={Style.List}>
         <label>
           <input type="checkbox" name="stock" ref={quantity} />
-          In Stock
+          <span>In Stock</span>
         </label>
         <label>
           <input type="checkbox" name="sale" ref={sale} />
-          On Sale
+          <span>On Sale</span>
         </label>
       </div>
 

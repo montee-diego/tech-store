@@ -1,29 +1,35 @@
-.pagination {
-  display: flex;
-  justify-content: center;
+.Pagination {
   align-items: center;
+  display: flex;
   gap: 1rem;
+  justify-content: center;
   margin: 1rem 0rem;
 }
 
-.pagination button {
+.Pagination button {
   background-color: transparent;
   border: none;
   border-radius: 5px;
-  width: 2rem;
   height: 2rem;
   transition: box-shadow 0.25s ease;
+  width: 2rem;
 }
 
-.pagination button:hover {
-  background-color: #f5f5f5;
-  cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+.Pagination button:focus {
+  outline: 3px solid var(--color-focus);
 }
 
-.pagination button:disabled {
+.Pagination button:disabled {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: default;
   pointer-events: none;
+}
+
+@media (hover: hover) {
+  .Pagination button:hover {
+    background-color: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
 }

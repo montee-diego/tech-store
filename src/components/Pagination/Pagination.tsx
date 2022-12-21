@@ -37,5 +37,5 @@ export const Pagination: FC<IProps> = ({ total }) => {
     return buttons
   }
 
-  return <div className={Style.pagination}>{renderButtons()}</div>
+  return <div className={Style.Pagination}>{renderButtons()}</div>
 }

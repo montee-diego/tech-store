@@ -33,20 +33,16 @@ export const CartProduct: FunctionComponent<IProps> = ({ cartItem }) => {
   }, [cartProductUpdate])
 
   return (
-    <div className={Style.card}>
-      <div className={Style.image}>
+    <div className={Style.Container}>
+      <div className={Style.Image}>
         <img src={product.image.url} alt={product.title} />
       </div>
 
-      <div className={Style.container}>
-        <div className={Style.title}>
-          <Link href={`/product/${product.id}`}>
-            <a className={Style.productlink}>{product.title}</a>
-          </Link>
-        </div>
+      <div className={Style.Product}>
+        <Link href={`/product/${product.id}`}>{product.title}</Link>
 
-        <div className={Style.info}>
-          <div className={Style.quantity}>
+        <div className={Style.Info}>
+          <div className={Style.Quantity}>
             <Quantity stock={product.quantity} quantity={quantity} setQuantity={setQuantity} />
 
             <p>
@@ -54,13 +50,13 @@ export const CartProduct: FunctionComponent<IProps> = ({ cartItem }) => {
             </p>
           </div>
 
-          <div className={Style.subtotal}>
+          <div className={Style.Subtotal}>
             <p>{displayPrice(product.price * quantity)}</p>
           </div>
         </div>
       </div>
 
-      <button value={product.id} onClick={handleClick} className={Style.remove}>
+      <button value={product.id} onClick={handleClick} className={Style.Remove}>
         <img src="/img/xmark-solid.svg" alt="X" />
       </button>
     </div>

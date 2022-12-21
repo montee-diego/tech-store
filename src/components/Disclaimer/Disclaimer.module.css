@@ -1,4 +1,4 @@
-.container {
+.Container {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +8,7 @@
   z-index: 200;
 }
 
-.popup {
+.Popup {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,12 +26,12 @@
   transform: translate(-50%, -50%);
 }
 
-.popup p {
+.Popup p {
   text-align: center;
 }
 
 @media screen and (max-width: 768px) {
-  .popup {
+  .Popup {
     top: 25%;
     left: 5%;
     width: 90%;
@@ -39,7 +39,7 @@
     transform: translate(0%, 0%);
   }
 
-  .popup button {
+  .Popup button {
     font-size: 1rem;
   }
 }

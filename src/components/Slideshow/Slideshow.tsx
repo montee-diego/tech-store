@@ -14,9 +14,11 @@ const CustomPrevArrow: FunctionComponent<CustomArrowProps> = (props) => {
   const { onClick } = props
 
   return (
-    <div className={`${Style.arrow} ${Style.prev}`} onClick={onClick}>
-      <img src="/img/prev-arrow.svg" alt="<" />
-    </div>
+    <button className={`${Style.Arrow} ${Style.Prev}`} onClick={onClick}>
+      <div className={Style.Icon}>
+        <img src="/img/prev-arrow.svg" alt="<" />
+      </div>
+    </button>
   )
 }
 
@@ -24,9 +26,11 @@ const CustomNextArrow: FunctionComponent<CustomArrowProps> = (props) => {
   const { onClick } = props
 
   return (
-    <div className={`${Style.arrow} ${Style.next}`} onClick={onClick}>
-      <img src="/img/next-arrow.svg" alt="<" />
-    </div>
+    <button className={`${Style.Arrow} ${Style.Next}`} onClick={onClick}>
+      <div className={Style.Icon}>
+        <img src="/img/next-arrow.svg" alt="<" />
+      </div>
+    </button>
   )
 }
 
@@ -43,7 +47,7 @@ export const Slideshow: FunctionComponent<IProps> = ({ children }) => {
   }
 
   return (
-    <div className={Style.container}>
+    <div className={Style.Container}>
       <Slider {...settings}>{children}</Slider>
     </div>
   )
