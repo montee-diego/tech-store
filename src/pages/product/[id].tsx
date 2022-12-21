@@ -136,7 +136,9 @@ const ProductPage: NextPage<IProduct> = ({ product }) => {
       </section>
 
       <section>
-        <h1 className={Style.similar}>Browse more {product.category.name}</h1>
+        <Title>
+          <h1>Browse more {product.category.name}</h1>
+        </Title>
         <ProductsGrid products={product.category.products} />
       </section>
     </>
