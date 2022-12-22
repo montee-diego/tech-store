@@ -1,0 +1,52 @@
+.Container {
+  display: flex;
+  gap: 2.5%;
+  position: relative;
+}
+
+.Products {
+  flex: 1;
+}
+
+.Tools {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.FilterBtn {
+  display: none;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 0.9rem;
+  padding: 0.3rem 0.5rem;
+}
+
+@media (hover: hover) {
+  .FilterBtn:hover {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Filter {
+    background-color: #efefef;
+    display: none;
+    width: 100%;
+  }
+
+  .FilterBtn {
+    display: initial;
+  }
+
+  .Open {
+    display: initial;
+  }
+
+  .Hide {
+    display: none;
+  }
+}
