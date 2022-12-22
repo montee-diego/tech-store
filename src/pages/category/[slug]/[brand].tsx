@@ -1,15 +1,13 @@
 import type { NextPage, GetServerSideProps } from "next"
 
-import { useState } from "react"
-
 import { client } from "@services/apollo-client"
 import { GetCategory } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 import { getQueryParams } from "@utils/getQueryParams"
 
-import { Breadcrumb, Filter, OrderBy, Pagination, ProductsGrid, Title } from "@components/index"
+import { Breadcrumb, Title } from "@components/index"
+import { ProductsWithFilter } from "@containers/index"
 import Head from "next/head"
-import Style from "@styles/Brand.module.css"
 
 interface ICategory {
   brands: string[]
@@ -26,17 +24,7 @@ interface IProps {
 }
 
 const BrandPage: NextPage<IProps> = ({ brand, category, total }) => {
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
-
-  const handleShowFilter = (): void => {
-    if (isFilterOpen) {
-      document.body.style.overflow = "visible"
-    } else {
-      document.body.style.overflow = "hidden"
-    }
-
-    setIsFilterOpen(!isFilterOpen)
-  }
+  const { products } = category
 
   return (
     <section>
@@ -48,28 +36,9 @@ const BrandPage: NextPage<IProps> = ({ brand, category, total }) => {
 
       <Title>
         <Breadcrumb category={category} brand={brand} />
-        <button className={Style.filterbtn} onClick={handleShowFilter}>
-          {isFilterOpen ? "Close" : "Filter"}
-        </button>
       </Title>
 
-      <div className={Style.flex}>
-        <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>
-          <Filter brands={[]} />
-        </div>
-        <div className={Style.products}>
-          <OrderBy />
-
-          {category.products.length > 0 ? (
-            <>
-              <ProductsGrid products={category.products} />
-              <Pagination total={total} />
-            </>
-          ) : (
-            <p>no results</p>
-          )}
-        </div>
-      </div>
+      <ProductsWithFilter products={products} total={total} />
     </section>
   )
 }

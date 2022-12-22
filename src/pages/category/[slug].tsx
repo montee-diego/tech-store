@@ -1,15 +1,13 @@
 import type { GetServerSideProps, NextPage } from "next"
 
-import { useState } from "react"
-
 import { client } from "@services/apollo-client"
 import { GetCategory } from "@services/queries"
 import { IProducts } from "@interfaces/interfaces"
 import { getQueryParams } from "@utils/getQueryParams"
 
-import { Breadcrumb, Filter, OrderBy, Pagination, ProductsGrid, Title } from "@components/index"
+import { Breadcrumb, Title } from "@components/index"
+import { ProductsWithFilter } from "@containers/index"
 import Head from "next/head"
-import Style from "@styles/Category.module.css"
 
 interface ICategory {
   brands: string[]
@@ -25,17 +23,7 @@ interface IProps {
 }
 
 const CategoryPage: NextPage<IProps> = ({ category, total }) => {
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
-
-  const handleShowFilter = (): void => {
-    if (isFilterOpen) {
-      document.body.style.overflow = "visible"
-    } else {
-      document.body.style.overflow = "hidden"
-    }
-
-    setIsFilterOpen(!isFilterOpen)
-  }
+  const { brands, products } = category
 
   return (
     <section>
@@ -45,28 +33,9 @@ const CategoryPage: NextPage<IProps> = ({ category, total }) => {
 
       <Title>
         <Breadcrumb category={category} />
-        <button className={Style.filterbtn} onClick={handleShowFilter}>
-          {isFilterOpen ? "Close" : "Filter"}
-        </button>
       </Title>
 
-      <div className={Style.flex}>
-        <div className={`${Style.filter} ${isFilterOpen ? Style.open : Style.close}`}>
-          <Filter brands={category.brands} />
-        </div>
-        <div className={Style.products}>
-          <OrderBy />
-
-          {category.products.length > 0 ? (
-            <>
-              <ProductsGrid products={category.products} />
-              <Pagination total={total} />
-            </>
-          ) : (
-            <p>No results.</p>
-          )}
-        </div>
-      </div>
+      <ProductsWithFilter brands={brands} products={products} total={total} />
     </section>
   )
 }
