@@ -1,6 +1,6 @@
 import type { FC, Dispatch, SetStateAction, SyntheticEvent } from "react"
 
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { useRouter } from "next/router"
 
 import Link from "next/link"
@@ -31,15 +31,26 @@ export const Filter: FC<IProps> = ({ brands, setIsFilterOpen }) => {
       pathname: router.pathname,
       query: {
         ...router.query,
-        min: Number(min?.current?.value) || 0,
-        max: Number(max?.current?.value) || 500000,
+        min: min?.current?.value,
+        max: max?.current?.value,
         quantity: quantity?.current?.checked ? 1 : 0,
         sale: sale?.current?.checked,
-        sort: router.query?.sort || 0,
+        sort: router.query?.sort,
         page: 1,
       },
     })
   }
+
+  useEffect(() => {
+    const { query } = router
+
+    if (min.current && max.current && quantity.current && sale.current) {
+      min.current.value = `${query.min}`
+      max.current.value = `${query.max}`
+      quantity.current.checked = query.quantity === "1"
+      sale.current.checked = query.sale === "true"
+    }
+  }, [router.isReady])
 
   return (
     <form className={Style.Form} onSubmit={handleSubmit}>
