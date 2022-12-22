@@ -1,4 +1,4 @@
-import type { FC, SyntheticEvent } from "react"
+import type { FC, Dispatch, SetStateAction, SyntheticEvent } from "react"
 
 import { useRef } from "react"
 import { useRouter } from "next/router"
@@ -7,19 +7,26 @@ import Link from "next/link"
 import Style from "./Filter.module.css"
 
 interface IProps {
-  brands: string[]
+  brands?: string[]
+  setIsFilterOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export const Filter: FC<IProps> = ({ brands }) => {
+export const Filter: FC<IProps> = ({ brands, setIsFilterOpen }) => {
   const router = useRouter()
   const min = useRef<HTMLInputElement | null>(null)
   const max = useRef<HTMLInputElement | null>(null)
   const quantity = useRef<HTMLInputElement | null>(null)
   const sale = useRef<HTMLInputElement | null>(null)
-  const displayBrands = [...brands].sort()
+  const displayBrands = brands ? [...brands].sort() : []
+
+  function handleCloseFilter(event: SyntheticEvent): void {
+    event.preventDefault()
+    setIsFilterOpen(false)
+  }
 
   function handleSubmit(event: SyntheticEvent): void {
     event.preventDefault()
+    setIsFilterOpen(false)
     router.replace({
       pathname: router.pathname,
       query: {
@@ -36,7 +43,7 @@ export const Filter: FC<IProps> = ({ brands }) => {
 
   return (
     <form className={Style.Form} onSubmit={handleSubmit}>
-      {brands.length > 0 && (
+      {brands && (
         <>
           <h5>Brands</h5>
           <div className={Style.List}>
@@ -73,7 +80,12 @@ export const Filter: FC<IProps> = ({ brands }) => {
         </label>
       </div>
 
-      <button type="submit">Apply</button>
+      <div className={Style.Actions}>
+        <button type="submit">Apply</button>
+        <button className={Style.FilterClose} onClick={handleCloseFilter}>
+          Close
+        </button>
+      </div>
     </form>
   )
 }

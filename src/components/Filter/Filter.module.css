@@ -14,10 +14,6 @@
   margin-bottom: 0.5rem;
 }
 
-.Form button {
-  float: right;
-}
-
 .List {
   display: flex;
   flex-direction: column;
@@ -81,6 +77,15 @@
   flex: 1;
 }
 
+.Actions {
+  text-align: right;
+}
+
+.FilterClose {
+  display: none;
+  margin-left: 0.5rem;
+}
+
 @media (hover: hover) {
   .Form button:hover {
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -94,18 +99,13 @@
 @media screen and (max-width: 768px) {
   .Form {
     width: 100%;
-    min-height: 90vh;
-  }
-
-  .List {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
   }
 
   .List label {
     flex: 1;
+  }
+
+  .FilterClose {
+    display: initial;
   }
 }
