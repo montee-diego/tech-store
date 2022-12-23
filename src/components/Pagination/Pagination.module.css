@@ -16,7 +16,7 @@
 }
 
 .Pagination button:focus {
-  outline: 3px solid var(--color-focus);
+  outline: 2px solid var(--color-focus);
 }
 
 .Pagination button:disabled {

@@ -38,7 +38,7 @@ export const Navbar: FunctionComponent = () => {
 
         <form className={Style.Search} onSubmit={handleSubmit}>
           <input type="text" value={input} onChange={handleInput} ref={inputEl} />
-          <button type="submit" title="Search">
+          <button type="submit" title="Search" tabIndex={-1}>
             <img src="/img/icon-search.svg" alt="Search" />
           </button>
         </form>

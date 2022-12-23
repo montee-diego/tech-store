@@ -31,7 +31,7 @@
 }
 
 .Quantity button:focus {
-  outline: 2px solid var(--color-focus);
+  outline: 3px solid var(--color-focus);
 }
 
 @media (hover: hover) {

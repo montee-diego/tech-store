@@ -39,6 +39,11 @@
   padding: 1rem;
 }
 
+.Product > a:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
 .Info {
   align-items: center;
   display: flex;
@@ -66,25 +71,30 @@
 .Remove {
   background-color: transparent;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 700;
   height: 20px;
-  opacity: 0.2;
   position: absolute;
   right: 5px;
   top: 5px;
-  transition: opacity 0.5s ease;
   width: 20px;
+}
+
+.Remove:focus {
+  outline: 2px solid var(--color-focus);
 }
 
 .Remove img {
   height: 100%;
+  opacity: 0.2;
+  transition: opacity 0.25s ease-in-out;
   width: 100%;
 }
 
 @media (hover: hover) {
-  .Remove:hover {
+  .Remove:hover img {
     opacity: 1;
   }
 }

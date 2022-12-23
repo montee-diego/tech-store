@@ -41,7 +41,9 @@
 
 .Form button:focus,
 .List a:focus,
-.List label:focus-within {
+.List label:focus-within,
+.Input:focus-within {
+  border: 1px solid rgba(0, 0, 0, 0.4);
   outline: 2px solid var(--color-focus);
 }
 

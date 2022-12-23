@@ -28,9 +28,10 @@
   overflow: hidden;
 }
 
-.Search:focus-within {
+.Search:focus-within,
+.Cart:focus {
   border: 1px solid rgba(0, 0, 0, 0.4);
-  outline: 3px solid var(--color-focus);
+  outline: 2px solid var(--color-focus);
 }
 
 .Search input,
@@ -72,11 +73,6 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-}
-
-.Cart:focus {
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  outline: 3px solid var(--color-focus);
 }
 
 .Cart span {

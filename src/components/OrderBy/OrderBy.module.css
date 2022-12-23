@@ -33,6 +33,10 @@
   outline: 2px solid var(--color-focus);
 }
 
+.Option:focus-within input:checked + span {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
 .Option input {
   opacity: 0;
   position: absolute;
